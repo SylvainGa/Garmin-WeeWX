@@ -1,0 +1,23 @@
+<strings>
+    <string id="AppName">WeeWX</string>
+	<string id="AppVersionTitle">Version de l'appli</string>
+    <string id="Prompt">Appuyez sur un boutton\nou l'écran pour\ncommencer</string>
+
+    <string id="MainMenuTitle">Quelle sonde ?</string>
+
+    <string id="Awaiting_response">En attente de\nla réponse</string>
+    <string id="Answer">$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$</string>
+    <string id="NoCurrentValue">Incapable de lire\nla température courante</string>
+    <string id="FailedToRead">Incapable de lire\nErreur: </string>
+
+	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
+	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
+	<string id="OptionMenu_3_name">Nom de l'emplacement 3</string>
+	<string id="OptionMenu_4_name">Nom de l'emplacement 4</string>
+	<string id="OptionMenu_5_name">Nom de l'emplacement 5</string>
+	<string id="OptionMenu_1_url">URL de l'emplacement 1</string>
+	<string id="OptionMenu_2_url">URL de l'emplacement 2</string>
+	<string id="OptionMenu_3_url">URL de l'emplacement 3</string>
+	<string id="OptionMenu_4_url">URL de l'emplacement 4</string>
+	<string id="OptionMenu_5_url">URL de l'emplacement 5</string>
+</strings>

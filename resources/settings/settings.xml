@@ -1,0 +1,41 @@
+<settings>
+	<setting propertyKey="@Properties.AppVersion" title="@Strings.AppVersionTitle">
+		<settingConfig type="alphaNumeric" readonly="true"/>
+	</setting>
+
+	<setting propertyKey="@Properties.option_slot1_name" title="@Strings.OptionMenu_1_name">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.option_slot1_url" title="@Strings.OptionMenu_1_url">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+
+	<setting propertyKey="@Properties.option_slot2_name" title="@Strings.OptionMenu_2_name">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.option_slot2_url" title="@Strings.OptionMenu_2_url">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+	<setting propertyKey="@Properties.option_slot3_name" title="@Strings.OptionMenu_3_name">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.option_slot3_url" title="@Strings.OptionMenu_3_url">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+	<setting propertyKey="@Properties.option_slot4_name" title="@Strings.OptionMenu_4_name">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.option_slot4_url" title="@Strings.OptionMenu_4_url">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+	<setting propertyKey="@Properties.option_slot5_name" title="@Strings.OptionMenu_5_name">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.option_slot5_url" title="@Strings.OptionMenu_5_url">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+</settings>

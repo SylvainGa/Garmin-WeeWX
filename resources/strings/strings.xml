@@ -1,0 +1,23 @@
+<strings>
+    <string id="AppName">WeeWX</string>
+	<string id="AppVersionTitle">App Version</string>
+    <string id="Prompt">Press button/screen\nto start</string>
+
+    <string id="MainMenuTitle">Which probe?</string>
+
+    <string id="Awaiting_response">Awaiting response</string>
+    <string id="Answer">$1$\n\nTemp: $2$ C\nWind Spd: $3$ KMH\nWind Dir: $4$</string>
+    <string id="NoCurrentValue">Unable to read current values</string>
+    <string id="FailedToRead">Failed to read\nError: </string>
+
+	<string id="OptionMenu_1_name">Slot 1 name</string>
+	<string id="OptionMenu_2_name">Slot 2 name</string>
+	<string id="OptionMenu_3_name">Slot 3 name</string>
+	<string id="OptionMenu_4_name">Slot 4 name</string>
+	<string id="OptionMenu_5_name">Slot 5 name</string>
+	<string id="OptionMenu_1_url">Slot 1 URL</string>
+	<string id="OptionMenu_2_url">Slot 2 URL</string>
+	<string id="OptionMenu_3_url">Slot 3 URL</string>
+	<string id="OptionMenu_4_url">Slot 4 URL</string>
+	<string id="OptionMenu_5_url">Slot 5 URL</string>
+</strings>

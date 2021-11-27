@@ -1,0 +1,13 @@
+<properties>
+	<property id="AppVersion" type="string">0.1.0</property>
+	<property id="option_slot1_url" type="string"></property>
+	<property id="option_slot2_url" type="string"></property>
+	<property id="option_slot3_url" type="string"></property>
+	<property id="option_slot4_url" type="string"></property>
+	<property id="option_slot5_url" type="string"></property>
+	<property id="option_slot1_name" type="string"></property>
+	<property id="option_slot2_name" type="string"></property>
+	<property id="option_slot3_name" type="string"></property>
+	<property id="option_slot4_name" type="string"></property>
+	<property id="option_slot5_name" type="string"></property>
+</properties>

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+    <manifest filename="C:\Users\Sylvain\git\WeeWX\manifest.xml"/>
+    <pcToLineNum>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="3" lineNum="14" pc="268435456" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="3" lineNum="15" pc="268435460" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="3" lineNum="16" pc="268435478" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="4" lineNum="21" pc="268435512" symbol="onLayout"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="4" lineNum="22" pc="268435516" symbol="onLayout"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="5" lineNum="28" pc="268435558" symbol="onShow"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="33" pc="268435563" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="34" pc="268435567" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="35" pc="268435600" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="36" pc="268435607" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="39" pc="268435630" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="40" pc="268435666" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="6" lineNum="41" pc="268435678" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="7" lineNum="48" pc="268435764" symbol="onHide"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXView.mc" id="7" lineNum="11" pc="268438938" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="9" lineNum="14" pc="268435769" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="9" lineNum="15" pc="268435773" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="20" pc="268435792" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="21" pc="268435796" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="22" pc="268435807" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="23" pc="268435870" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="24" pc="268435916" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="25" pc="268435927" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="26" pc="268435990" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="27" pc="268436036" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="28" pc="268436047" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="29" pc="268436110" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="30" pc="268436156" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="31" pc="268436167" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="32" pc="268436230" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="33" pc="268436276" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="34" pc="268436287" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="10" lineNum="35" pc="268436350" symbol="onMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="58" pc="268436612" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="59" pc="268436616" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="60" pc="268436619" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="61" pc="268436630" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="62" pc="268436644" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="63" pc="268436651" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="64" pc="268436665" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="66" pc="268436675" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="67" pc="268436689" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="68" pc="268436722" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="69" pc="268436732" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="70" pc="268436742" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="71" pc="268436761" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="72" pc="268436779" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="73" pc="268436804" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="74" pc="268437020" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="77" pc="268437045" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="79" pc="268437052" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="82" pc="268437153" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="87" pc="268437196" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="90" pc="268437245" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="12" lineNum="91" pc="268437279" symbol="onReceive"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="94" pc="268437292" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="95" pc="268437296" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="96" pc="268437322" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="97" pc="268437331" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="98" pc="268437357" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="99" pc="268437366" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="100" pc="268437392" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="101" pc="268437401" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="102" pc="268437427" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="103" pc="268437436" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="104" pc="268437462" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="105" pc="268437471" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="106" pc="268437497" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="107" pc="268437506" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="108" pc="268437532" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="109" pc="268437539" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="110" pc="268437563" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="111" pc="268437581" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="113" pc="268437604" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="114" pc="268437614" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="115" pc="268437620" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="116" pc="268437646" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="117" pc="268437653" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="118" pc="268437666" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="119" pc="268437679" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="120" pc="268437703" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="121" pc="268437710" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="122" pc="268437720" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="123" pc="268437727" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="125" pc="268437750" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="126" pc="268437760" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="127" pc="268437766" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="128" pc="268437798" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="130" pc="268437807" symbol="type_name"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWxMenuDelegate.mc" id="13" lineNum="11" pc="268439006" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="15" lineNum="13" pc="268437814" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="15" lineNum="14" pc="268437818" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="19" pc="268437837" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="20" pc="268437841" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="22" pc="268437869" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="23" pc="268437901" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="24" pc="268437919" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="27" pc="268437948" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="16" lineNum="29" pc="268438004" symbol="onMenu"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="32" pc="268438008" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="33" pc="268438012" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="35" pc="268438040" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="36" pc="268438072" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="37" pc="268438090" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="40" pc="268438119" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="17" lineNum="42" pc="268438175" symbol="onSelect"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="45" pc="268438179" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="47" pc="268438183" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="48" pc="268438199" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="50" pc="268438229" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="52" pc="268438339" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="53" pc="268438358" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="55" pc="268438361" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="56" pc="268438380" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="58" pc="268438383" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="59" pc="268438402" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="61" pc="268438405" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="62" pc="268438424" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="64" pc="268438427" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="65" pc="268438446" symbol="addMenuItem"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXDelegate.mc" id="18" lineNum="10" pc="268438957" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="20" lineNum="17" pc="268438450" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="20" lineNum="18" pc="268438454" symbol="initialize"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="21" lineNum="23" pc="268438473" symbol="onStart"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="22" lineNum="28" pc="268438478" symbol="onStop"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="23" lineNum="33" pc="268438483" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="23" lineNum="34" pc="268438487" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\Sylvain\\git\\WeeWX\\source\\WeeWXApp.mc" id="23" lineNum="14" pc="268439025" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="29" lineNum="17" pc="268438563" symbol="MainLayout"/>
+        <entry filename="Rez" id="29" lineNum="19" pc="268438575" symbol="MainLayout"/>
+        <entry filename="Rez" id="29" lineNum="20" pc="268438727" symbol="MainLayout"/>
+        <entry filename="Rez" id="29" lineNum="22" pc="268438909" symbol="MainLayout"/>
+        <entry filename="Rez" id="31" lineNum="1" pc="268438976" symbol="&lt;init&gt;"/>
+    </pcToLineNum>
+    <symbolTable>
+        <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry field="true" id="19" symbol="OptionMenu_1_url"/>
+        <entry id="8389346" symbol="text"/>
+        <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+        <entry id="4" module="true" symbol="globals/Rez/Menus"/>
+        <entry field="true" id="23" symbol="OptionMenu_2_name"/>
+        <entry id="17" method="true" symbol="MainLayout"/>
+        <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+        <entry id="36" method="true" symbol="&lt;globals/WeeWXMenuDelegate/&lt;&gt;makeRequest&gt;"/>
+        <entry field="true" id="26" symbol="AppName"/>
+        <entry id="8" module="true" symbol="globals/Rez/Strings"/>
+        <entry id="8389594" symbol="headers"/>
+        <entry id="8389080" method="true" symbol="onMenu"/>
+        <entry id="8388772" module="true" object="true" symbol="Fonts"/>
+        <entry id="11" object="true" symbol="WeeWXDelegate"/>
+        <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="2" module="true" symbol="globals/Rez"/>
+        <entry field="true" id="24" symbol="OptionMenu_3_url"/>
+        <entry id="8389124" method="true" symbol="onUpdate"/>
+        <entry field="true" id="8389065" symbol="locY"/>
+        <entry field="true" id="8389064" symbol="locX"/>
+        <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+        <entry id="8389348" symbol="font"/>
+        <entry field="true" id="30" symbol="OptionMenu_4_name"/>
+        <entry id="15" module="true" symbol="Menus"/>
+        <entry id="6" module="true" symbol="globals/Rez/Layouts"/>
+        <entry id="12" object="true" symbol="WeeWXApp"/>
+        <entry id="8389122" method="true" symbol="onLayout"/>
+        <entry id="8389349" symbol="justification"/>
+        <entry id="43" symbol="Item5"/>
+        <entry id="42" symbol="Item4"/>
+        <entry id="41" symbol="Item3"/>
+        <entry id="40" symbol="Item2"/>
+        <entry id="39" symbol="Item1"/>
+        <entry id="7" module="true" symbol="globals/Rez/JsonData"/>
+        <entry field="true" id="25" symbol="NoCurrentValue"/>
+        <entry id="9" object="true" symbol="WeeWXView"/>
+        <entry field="true" id="28" symbol="OptionMenu_1_name"/>
+        <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+        <entry id="13" method="true" symbol="addMenuItem"/>
+        <entry field="true" id="32" symbol="FailedToRead"/>
+        <entry id="8389844" symbol="responseType"/>
+        <entry id="8388644" module="true" symbol="System"/>
+        <entry field="true" id="35" symbol="OptionMenu_3_name"/>
+        <entry id="8389619" method="true" symbol="onSelect"/>
+        <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="37" method="true" symbol="onReceive"/>
+        <entry field="true" id="31" symbol="OptionMenu_5_url"/>
+        <entry field="true" id="29" symbol="OptionMenu_2_url"/>
+        <entry id="8388640" module="true" symbol="Lang"/>
+        <entry id="8390088" module="true" object="true" symbol="JsonData"/>
+        <entry field="true" id="16" symbol="LauncherIcon"/>
+        <entry id="8388610" symbol="statics"/>
+        <entry id="8389123" method="true" symbol="onShow"/>
+        <entry field="true" id="20" symbol="MainMenuTitle"/>
+        <entry id="8389350" module="true" symbol="globals"/>
+        <entry field="true" id="27" symbol="Answer"/>
+        <entry id="8388770" module="true" object="true" symbol="Strings"/>
+        <entry id="8388702" method="true" symbol="initialize"/>
+        <entry field="true" id="34" symbol="Prompt"/>
+        <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="8389280" method="true" symbol="getInitialView"/>
+        <entry id="8389281" method="true" symbol="onStop"/>
+        <entry id="10" object="true" symbol="WeeWXMenuDelegate"/>
+        <entry id="8389109" method="true" symbol="onMenuItem"/>
+        <entry id="8389347" symbol="color"/>
+        <entry field="true" id="18" symbol="AppVersionTitle"/>
+        <entry id="38" method="true" symbol="type_name"/>
+        <entry id="14" module="true" symbol="Layouts"/>
+        <entry id="5" module="true" symbol="globals/Rez/Fonts"/>
+        <entry field="true" id="21" symbol="Awaiting_response"/>
+        <entry field="true" id="22" symbol="OptionMenu_5_name"/>
+        <entry id="8389125" method="true" symbol="onHide"/>
+        <entry id="8388635" module="true" symbol="Application"/>
+        <entry field="true" id="33" symbol="OptionMenu_4_url"/>
+    </symbolTable>
+    <localVars>
+        <entry arg="true" endPc="268435557" name="dc" stackId="1" startPc="268435512"/>
+        <entry endPc="268435762" name="_message" stackId="2" startPc="268435567"/>
+        <entry arg="true" endPc="268435763" name="dc" stackId="1" startPc="268435563"/>
+        <entry arg="true" endPc="268436396" name="item" stackId="1" startPc="268435792"/>
+        <entry endPc="268436610" name="options" stackId="2" startPc="268436401"/>
+        <entry arg="true" endPc="268436611" name="url" stackId="1" startPc="268436397"/>
+        <entry endPc="268437041" name="arr" stackId="10" startPc="268436779"/>
+        <entry endPc="268437041" name="val" stackId="9" startPc="268436779"/>
+        <entry endPc="268437149" name="outTemp" stackId="6" startPc="268436689"/>
+        <entry endPc="268437149" name="windSpeed" stackId="7" startPc="268436689"/>
+        <entry endPc="268437149" name="windDir" stackId="8" startPc="268436689"/>
+        <entry endPc="268437149" name="title" stackId="5" startPc="268436689"/>
+        <entry endPc="268437189" name="current" stackId="4" startPc="268436665"/>
+        <entry endPc="268437290" name="_message" stackId="3" startPc="268436616"/>
+        <entry arg="true" endPc="268437291" name="responseCode" stackId="1" startPc="268436612"/>
+        <entry arg="true" endPc="268437291" name="data" stackId="2" startPc="268436612"/>
+        <entry endPc="268437603" name="i" stackId="3" startPc="268437563"/>
+        <entry endPc="268437616" name="s" stackId="2" startPc="268437532"/>
+        <entry endPc="268437749" name="i" stackId="7" startPc="268437703"/>
+        <entry endPc="268437762" name="s" stackId="4" startPc="268437646"/>
+        <entry endPc="268437762" name="keys" stackId="5" startPc="268437646"/>
+        <entry endPc="268437762" name="vals" stackId="6" startPc="268437646"/>
+        <entry arg="true" endPc="268437813" name="obj" stackId="1" startPc="268437292"/>
+        <entry endPc="268437947" name="i" stackId="2" startPc="268437919"/>
+        <entry endPc="268438006" name="thisMenu" stackId="1" startPc="268437841"/>
+        <entry endPc="268438118" name="i" stackId="2" startPc="268438090"/>
+        <entry endPc="268438177" name="thisMenu" stackId="1" startPc="268438012"/>
+        <entry endPc="268438448" name="_slot_str" stackId="3" startPc="268438183"/>
+        <entry endPc="268438448" name="_slot_data" stackId="4" startPc="268438183"/>
+        <entry arg="true" endPc="268438449" name="menu" stackId="1" startPc="268438179"/>
+        <entry arg="true" endPc="268438449" name="slot" stackId="2" startPc="268438179"/>
+        <entry arg="true" endPc="268438477" name="state" stackId="1" startPc="268438473"/>
+        <entry arg="true" endPc="268438482" name="state" stackId="1" startPc="268438478"/>
+        <entry endPc="268438935" name="rez_cmp_local_text_1327538942" stackId="3" startPc="268438575"/>
+        <entry endPc="268438935" name="rez_cmp_local_text_1518651652" stackId="2" startPc="268438575"/>
+        <entry arg="true" endPc="268438936" name="dc" stackId="1" startPc="268438563"/>
+    </localVars>
+    <annotations>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppVersionTitle"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_1_url"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="MainMenuTitle"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Awaiting_response"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_5_name"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_2_name"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_3_url"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="NoCurrentValue"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Answer"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_1_name"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_2_url"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_4_name"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_5_url"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="FailedToRead"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_4_url"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Prompt"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="OptionMenu_3_name"/>
+    </annotations>
+    <dataEntryOffsetMappings>
+        <dataEntry label="globals" offset="87" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/WeeWXView" offset="166" parentId="globals" symbolId="WeeWXView" type="class"/>
+        <dataEntry label="globals/WeeWXDelegate" offset="245" parentId="globals" symbolId="WeeWXDelegate" type="class"/>
+        <dataEntry label="globals/Rez" offset="316" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/Rez/Drawables" offset="395" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Menus" offset="434" parentId="Rez" symbolId="Menus" type="module"/>
+        <dataEntry label="globals/Rez/Fonts" offset="465" parentId="Rez" symbolId="Fonts" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="496" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/JsonData" offset="535" parentId="Rez" symbolId="JsonData" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="566" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/WeeWXMenuDelegate" offset="741" parentId="globals" symbolId="WeeWXMenuDelegate" type="class"/>
+        <dataEntry label="globals/WeeWXApp" offset="820" parentId="globals" symbolId="WeeWXApp" type="class"/>
+    </dataEntryOffsetMappings>
+    <functions>
+        <functionEntry accessMode="public" name="initialize" parent="WeeWXView">
+            <documentation><![CDATA[<div class="description"> Constructor<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onLayout" parent="WeeWXView">
+            <param id="dc"/>
+            <documentation><![CDATA[<div class="description"> Load your resources here<br/> <div class="param"> dc Device context</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onShow" parent="WeeWXView">
+            <documentation><![CDATA[<div class="description"> Called when this View is brought to the foreground. Restore<br/> the state of this View and prepare it to be shown. This includes<br/> loading resources into memory.<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onUpdate" parent="WeeWXView">
+            <param id="dc"/>
+            <documentation><![CDATA[<div class="description"> Update the view<br/> <div class="param"> dc Device context</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onHide" parent="WeeWXView">
+            <documentation><![CDATA[<div class="description"> Called when this View is removed from the screen. Save the<br/> state of this View here. This includes freeing resources from<br/> memory.<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="initialize" parent="WeeWXMenuDelegate">
+            <documentation><![CDATA[<div class="description"> Constructor<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onMenuItem" parent="WeeWXMenuDelegate">
+            <param id="item"/>
+            <documentation><![CDATA[<div class="description"> Handle a menu item being selected<br/> <div class="param"> item Symbol identifier of the menu item that was chosen</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="private" name="&lt;globals/WeeWXMenuDelegate/&lt;&gt;makeRequest&gt;" parent="WeeWXMenuDelegate">
+            <param id="url"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onReceive" parent="WeeWXMenuDelegate">
+            <param id="responseCode"/>
+            <param id="data"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="type_name" parent="WeeWXMenuDelegate">
+            <param id="obj"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="initialize" parent="WeeWXDelegate">
+            <documentation><![CDATA[<div class="description"> Constructor<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onMenu" parent="WeeWXDelegate">
+            <documentation><![CDATA[<div class="description"> Handle the menu event<br/> <div class="returns">Returns  true if handled, false otherwise</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onSelect" parent="WeeWXDelegate">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="addMenuItem" parent="WeeWXDelegate">
+            <param id="menu"/>
+            <param id="slot"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="initialize" parent="WeeWXApp">
+            <documentation><![CDATA[<div class="description"> Constructor<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onStart" parent="WeeWXApp">
+            <param id="state"/>
+            <documentation><![CDATA[<div class="description"> Handle app startup<br/> <div class="param"> state Startup arguments</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onStop" parent="WeeWXApp">
+            <param id="state"/>
+            <documentation><![CDATA[<div class="description"> Handle app shutdown<br/> <div class="param"> state Shutdown arguments</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="getInitialView" parent="WeeWXApp">
+            <documentation><![CDATA[<div class="description"> Return the initial views for the app<br/> <div class="returns">Returns  Array Pair [View, InputDelegate]</div><br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="MainLayout" parent="Layouts">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+    </functions>
+</debugInfo>
