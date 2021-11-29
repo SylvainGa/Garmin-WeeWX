@@ -1,6 +1,6 @@
 
 .vscode/tasks.json
-bin/WeeWx-settings.json
-bin/WeeWx.prg
-bin/WeeWx-settings.json
 bin/WeeWx.prg.debug.xml
+bin/WeeWx-settings.json
+*.prg
+bin/WeeWx.prg
