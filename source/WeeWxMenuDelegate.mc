@@ -65,7 +65,24 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
 	
 				if (current instanceof Dictionary) {
 					var title = Application.getApp().getProperty("title");
-		 			var outTemp = current["outTemp"];
+/*                    var field1_name = Application.getApp().getProperty("field1");
+                    var field2_name = Application.getApp().getProperty("field2");
+                    var field3_name = Application.getApp().getProperty("field3");
+                    var field4_name = Application.getApp().getProperty("field4");
+                    var field1 = null, field2 = null, field3 = null, field4 = null;
+                    if (field1_name) {
+                        field1 = current[field1_name].toNumber();
+                    }
+                    if (field2_name) {
+                        field2 = current[field2_name].toNumber();
+                    }
+                    if (field3_name) {
+                        field3 = current[field3_name].toNumber();
+                    }
+                    if (field4_name) {
+                        field4 = current[field4_name].toNumber();
+                    }
+*/		 			var outTemp = current["outTemp"];
 		 			var windSpeed = current["windSpeed"];
 		 			var windDir = current["windDir"].toNumber();
 		 			if (windDir instanceof Lang.Number) {
@@ -84,7 +101,11 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
 	        }
         }
         else {
-            _message = WatchUi.loadResource(Rez.Strings.FailedToRead) + responseCode.toString();
+            var errorStr = "";
+            if (data) {
+            	errorStr = data.get("error");
+            }
+            _message = WatchUi.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
         }
 
 		Application.getApp().setProperty("message", _message);

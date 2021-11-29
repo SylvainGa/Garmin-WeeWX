@@ -38,4 +38,18 @@
 	<setting propertyKey="@Properties.option_slot5_url" title="@Strings.OptionMenu_5_url">
 		<settingConfig type="alphaNumeric" />
 	</setting>
+
+	<setting propertyKey="@Properties.field1" title="@Strings.field1">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field2" title="@Strings.field2">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field3" title="@Strings.field3">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field4" title="@Strings.field4">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
 </settings>

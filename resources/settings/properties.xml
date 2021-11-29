@@ -10,4 +10,8 @@
 	<property id="option_slot3_name" type="string"></property>
 	<property id="option_slot4_name" type="string"></property>
 	<property id="option_slot5_name" type="string"></property>
+	<property id="field1" type="string"></property>
+	<property id="field2" type="string"></property>
+	<property id="field3" type="string"></property>
+	<property id="field4" type="string"></property>
 </properties>

@@ -20,4 +20,8 @@
 	<string id="OptionMenu_3_url">Slot 3 URL</string>
 	<string id="OptionMenu_4_url">Slot 4 URL</string>
 	<string id="OptionMenu_5_url">Slot 5 URL</string>
+	<string id="field1">Field 1</string>
+	<string id="field2">Field 2</string>
+	<string id="field3">Field 3</string>
+	<string id="field4">Field 4</string>
 </strings>
