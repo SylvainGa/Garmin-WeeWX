@@ -51,5 +51,10 @@
 	<setting propertyKey="@Properties.field4" title="@Strings.field4">
 		<settingConfig type="alphaNumeric" />
 	</setting>
-
+	<setting propertyKey="@Properties.display" title="@Strings.display">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.directions" title="@Strings.directions">
+		<settingConfig type="alphaNumeric" />
+	</setting>
 </settings>

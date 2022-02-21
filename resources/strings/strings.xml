@@ -24,4 +24,6 @@
 	<string id="field2">Field 2</string>
 	<string id="field3">Field 3</string>
 	<string id="field4">Field 4</string>
+	<string id="display">Display</string>
+	<string id="directions">Directions</string>
 </strings>

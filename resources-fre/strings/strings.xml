@@ -20,4 +20,10 @@
 	<string id="OptionMenu_3_url">URL de l'emplacement 3</string>
 	<string id="OptionMenu_4_url">URL de l'emplacement 4</string>
 	<string id="OptionMenu_5_url">URL de l'emplacement 5</string>
+	<string id="field1">Champs 1</string>
+	<string id="field2">Champs 2</string>
+	<string id="field3">Champs 3</string>
+	<string id="field4">Champs 4</string>
+	<string id="display">Affichage</string>
+	<string id="directions">Direction du vent</string>
 </strings>

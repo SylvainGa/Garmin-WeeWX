@@ -14,4 +14,6 @@
 	<property id="field2" type="string"></property>
 	<property id="field3" type="string"></property>
 	<property id="field4" type="string"></property>
+	<property id="display" type="string"></property>
+	<property id="directions" type="string"></property>
 </properties>

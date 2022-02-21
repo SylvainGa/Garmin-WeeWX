@@ -37,22 +37,24 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     private function makeRequest(url) as Void {
-        Application.getApp().setProperty("url", null);
 		Application.getApp().setProperty("message", WatchUi.loadResource(Rez.Strings.Awaiting_response));
 
-        var options = {
-            :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
-            :headers => {
-                "Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED
-            }
-        };
+		var params = {};
+		var headers = {
+			"Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
+		};
+		var options = {
+			:method => Communications.HTTP_REQUEST_METHOD_GET,
+			:headers => headers,
+			:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
+		}; 
 
-        Communications.makeWebRequest(
-            url,
-            {},
-            options,
-            method(:onReceive)
-        );
+		if (Communications has :makeWebRequest ) {
+			Communications.makeWebRequest(url, params, options, method(:onReceive));
+		}
+		else {
+			Communications.makeJsonRequest(url, params, options, method(:onReceive));
+		}
     }
 
     public function onReceive(responseCode as Number, data as Dictionary?) as Void {
@@ -65,35 +67,38 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
 	
 				if (current instanceof Dictionary) {
 					var title = Application.getApp().getProperty("title");
-/*                    var field1_name = Application.getApp().getProperty("field1");
+                    var field1_name = Application.getApp().getProperty("field1");
                     var field2_name = Application.getApp().getProperty("field2");
                     var field3_name = Application.getApp().getProperty("field3");
                     var field4_name = Application.getApp().getProperty("field4");
                     var field1 = null, field2 = null, field3 = null, field4 = null;
-                    if (field1_name) {
-                        field1 = current[field1_name].toNumber();
+    
+                    if (!(field1_name.toString().equals(""))) {
+                        field1 = convert(current[field1_name], field1_name);
                     }
-                    if (field2_name) {
-                        field2 = current[field2_name].toNumber();
+                    if (!(field2_name.toString().equals(""))) {
+                        field2 = convert(current[field2_name], field2_name);
                     }
-                    if (field3_name) {
-                        field3 = current[field3_name].toNumber();
+                    if (!(field3_name.toString().equals(""))) {
+                        field3 = convert(current[field3_name], field3_name);
                     }
-                    if (field4_name) {
-                        field4 = current[field4_name].toNumber();
+                    if (!(field4_name.toString().equals(""))) {
+                        field4 = convert(current[field4_name], field4_name);
                     }
-*/		 			var outTemp = current["outTemp"];
-		 			var windSpeed = current["windSpeed"];
-		 			var windDir = current["windDir"].toNumber();
-		 			if (windDir instanceof Lang.Number) {
-						var val = (windDir.toFloat() / 22.5) + .5;
-						var arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
-						windDir = arr[(val.toNumber() % 16)];
+
+					// Need to parse our format string to replace '\' 'n' characters with the real \r\n
+					var _formatStr = Application.getApp().getProperty("display");
+					var array = _formatStr.toCharArray();
+					for (var i = 0; i < _formatStr.length() - 1; i++) {
+						if (array[i] == '\\' && array[i + 1] == 'n' ) {
+							array[i] = 10.toChar();
+							array[i + 1] = ' ';
+						}
 					}
-					else {
-						windDir = "N/A";
-					}
-					_message = Lang.format(WatchUi.loadResource(Rez.Strings.Answer), [title, outTemp, windSpeed, windDir]);
+					_formatStr = StringUtil.charArrayToString(array);
+
+					// _message = Lang.format("$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$\nRafale : $5$ KMH", [title, field1, field2, field3, field4]);
+					_message = Lang.format(_formatStr, [title, field1, field2, field3, field4]);
 				}
 				else {
 		            _message = WatchUi.loadResource(Rez.Strings.NoCurrentValue);
@@ -112,43 +117,84 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
         requestUpdate();
     }
 
-function type_name(obj) {
-    if (obj instanceof Toybox.Lang.Number) {
-        return "Number";
-    } else if (obj instanceof Toybox.Lang.Long) {
-        return "Long";
-    } else if (obj instanceof Toybox.Lang.Float) {
-        return "Float";
-    } else if (obj instanceof Toybox.Lang.Double) {
-        return "Double";
-    } else if (obj instanceof Toybox.Lang.Boolean) {
-        return "Boolean";
-    } else if (obj instanceof Toybox.Lang.String) {
-        return "String";
-    } else if (obj instanceof Toybox.Lang.Array) {
-        var s = "Array [";
-        for (var i = 0; i < obj.size(); ++i) {
-            s += type_name(obj);
-            s += ", ";
-        }
-        s += "]";
-        return s;
-    } else if (obj instanceof Toybox.Lang.Dictionary) {
-        var s = "Dictionary{";
-        var keys = obj.keys();
-        var vals = obj.values();
-        for (var i = 0; i < keys.size(); ++i) {
-            s += keys;
-            s += ": ";
-            s += vals;
-            s += ", ";
-        }
-        s += "}";
-        return s;
-    } else if (obj instanceof Toybox.Time.Gregorian.Info) {
-        return "Gregorian.Info";
-    } else {
-        return "???";
-    }
-}
+    function convert(value, name) {
+    	if (name.equals("windDir")) {
+    		if (value.toNumber() instanceof Lang.Number) {
+				var val = (value.toFloat() / 22.5) + .5;
+				var arr = toArray(Application.getApp().getProperty("directions"),",");
+System.println("Directions : " + Application.getApp().getProperty("directions"));
+//				var arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+				return(arr[(val.toNumber() % 16)]);
+			}
+			else {
+				return("N/A");
+			}
+    	}
+    	else {
+    		return (value.toNumber());
+    	}
+	}
+	
+	function type_name(obj) {
+	    if (obj instanceof Toybox.Lang.Number) {
+	        return "Number";
+	    } else if (obj instanceof Toybox.Lang.Long) {
+	        return "Long";
+	    } else if (obj instanceof Toybox.Lang.Float) {
+	        return "Float";
+	    } else if (obj instanceof Toybox.Lang.Double) {
+	        return "Double";
+	    } else if (obj instanceof Toybox.Lang.Boolean) {
+	        return "Boolean";
+	    } else if (obj instanceof Toybox.Lang.String) {
+	        return "String";
+	    } else if (obj instanceof Toybox.Lang.Array) {
+	        var s = "Array [";
+	        for (var i = 0; i < obj.size(); ++i) {
+	            s += type_name(obj);
+	            s += ", ";
+	        }
+	        s += "]";
+	        return s;
+	    } else if (obj instanceof Toybox.Lang.Dictionary) {
+	        var s = "Dictionary{";
+	        var keys = obj.keys();
+	        var vals = obj.values();
+	        for (var i = 0; i < keys.size(); ++i) {
+	            s += keys;
+	            s += ": ";
+	            s += vals;
+	            s += ", ";
+	        }
+	        s += "}";
+	        return s;
+	    } else if (obj instanceof Toybox.Time.Gregorian.Info) {
+	        return "Gregorian.Info";
+	    } else {
+	        return "???";
+	    }
+	}
+	
+	function toArray(string, splitter) {
+		var array = new [16]; //Use maximum expected length
+		var index = 0;
+		var location;
+
+		do {
+			location = string.find(splitter);
+			if (location != null) {
+				array[index] = string.substring(0, location);
+				string = string.substring(location + 1, string.length());
+				index++;
+			}
+		} while (location != null);
+
+		array[index] = string;
+		
+		var result = new [index];
+		for (var i = 0; i < index; i++) {
+			result = array;
+		}
+		return result;
+	}
 }
