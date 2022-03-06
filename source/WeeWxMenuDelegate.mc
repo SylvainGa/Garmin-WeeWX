@@ -101,6 +101,7 @@ System.println("message is NOT null in WeeWXMenuDelegate, poping up");
     
                     if (!(field1_name.toString().equals(""))) {
                         field1 = convert(current[field1_name], field1_name);
+System.println(field1_name + " - " + field1);
                     }
                     if (!(field2_name.toString().equals(""))) {
                         field2 = convert(current[field2_name], field2_name);
@@ -112,7 +113,7 @@ System.println("message is NOT null in WeeWXMenuDelegate, poping up");
                         field4 = convert(current[field4_name], field4_name);
                     }
 
-					// Need to parse our format string to replace '\' 'n' characters with the real \r\n
+					// Need to parse our format string to replace '\' 'n' characters with the real \n follow by a space
 					var _formatStr = Application.getApp().getProperty("display");
 					var array = _formatStr.toCharArray();
 					for (var i = 0; i < _formatStr.length() - 1; i++) {
@@ -144,6 +145,7 @@ System.println("message is NOT null in WeeWXMenuDelegate, poping up");
     }
 
     function convert(value, name) {
+System.println(name + " - " + value);
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;
@@ -155,7 +157,11 @@ System.println("message is NOT null in WeeWXMenuDelegate, poping up");
 			}
     	}
     	else {
-    		return (value.toNumber());
+    		if (value.find(".") != null || value.find(",") != null) {
+	    		return (value.toFloat().format("%.1f"));
+    		} else {
+	    		return (value.toNumber());
+    		}
     	}
 	}
 	

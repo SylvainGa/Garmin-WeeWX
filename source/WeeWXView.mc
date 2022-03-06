@@ -46,7 +46,7 @@ System.println("Exiting");
 				WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 				System.exit();
 			}
-			
+
 			if (thisMenu == null) {
 System.println("Creating menu and delegate");
 				thisMenu = new WatchUi.Menu();
@@ -66,11 +66,11 @@ System.println("Creating menu and delegate");
 			}
 			var _menuDisplayed = Application.getApp().getProperty("menuDisplayed");
 			if (_menuDisplayed == false) {
-System.println("pushing menu and delegate");
+System.println("Pushing menu and delegate");
 		        Application.getApp().setProperty("menuDisplayed", true);
 				WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_UP );
 			} else {
-System.println("Menu already up");
+System.println("Menu already up, skipping pushView");
 			}
         }
         else {
