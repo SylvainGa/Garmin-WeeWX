@@ -13,6 +13,8 @@ import Toybox.WatchUi;
 //! has options to return to the home screen or display an auxiliary, nested menu.
 class WeeWXApp extends Application.AppBase {
 
+	var mView;
+	
     //! Constructor
     public function initialize() {
         AppBase.initialize();
@@ -26,11 +28,22 @@ class WeeWXApp extends Application.AppBase {
     //! Handle app shutdown
     //! @param state Shutdown arguments
     public function onStop(state as Dictionary?) as Void {
+System.println("Stopping");
     }
 
     //! Return the initial views for the app
     //! @return Array Pair [View, InputDelegate]
-    public function getInitialView() as Array<Views or InputDelegates>? {
-        return [new $.WeeWXView(), new $.WeeWXDelegate()] as Array<Views or InputDelegates>;
+    public function getInitialView() as Array<Views or BehaviorDelegate>? {
+        return [new $.WeeWXView(), new $.WeeWXMenuDelegate()] as Array<Views or BehaviorDelegate>;
     }
+
+/*    public function getInitialView() {
+		mView = new WeeWXView();
+		return [mView];    	
+    }
+
+	function getView() {
+		return mView;
+	}
+*/
 }

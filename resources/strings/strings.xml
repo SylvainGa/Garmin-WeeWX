@@ -9,6 +9,7 @@
     <string id="Answer">$1$\n\nTemp: $2$ C\nWind Spd: $3$ KMH\nWind Dir: $4$</string>
     <string id="NoCurrentValue">Unable to read current values</string>
     <string id="FailedToRead">Failed to read\nError: </string>
+	<string id="back">Back</string>
 
 	<string id="OptionMenu_1_name">Slot 1 name</string>
 	<string id="OptionMenu_2_name">Slot 2 name</string>

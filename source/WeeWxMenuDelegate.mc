@@ -8,11 +8,18 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 //! Input handler to respond to main menu selections
-class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
+class WeeWXMenuDelegate extends WatchUi.BehaviorDelegate {
 
     //! Constructor
     public function initialize() {
         MenuInputDelegate.initialize();
+    }
+
+    public function onTap(item as Symbol) as Void {
+System.println("Tap!");
+		Application.getApp().setProperty("message", null);
+        WatchUi.requestUpdate();
+        return true;
     }
 
     //! Handle a menu item being selected
@@ -33,10 +40,29 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
         } else if (item == :Item5) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot5_name"));
             makeRequest(Application.getApp().getProperty("option_slot5_url"));
+        } else if (item == :Back) {
+			Application.getApp().setProperty("exit", true);
+System.println("Back!");
+            WatchUi.requestUpdate();
         }
+		return true;
     }
 
-    private function makeRequest(url) as Void {
+    public function onBack() as Void {
+		var _message = Application.getApp().getProperty("message");
+		if (_message == null) {		 
+System.println("message is null in WeeWXMenuDelegate, exiting");
+			Application.getApp().setProperty("exit", true);
+            WatchUi.requestUpdate();
+	    } else {
+System.println("message is NOT null in WeeWXMenuDelegate, poping up");
+			Application.getApp().setProperty("message", null);
+            WatchUi.requestUpdate();
+			return true;
+	    }
+    }
+    
+   private function makeRequest(url) as Void {
 		Application.getApp().setProperty("message", WatchUi.loadResource(Rez.Strings.Awaiting_response));
 
 		var params = {};
@@ -114,7 +140,7 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
         }
 
 		Application.getApp().setProperty("message", _message);
-        requestUpdate();
+        WatchUi.requestUpdate();
     }
 
     function convert(value, name) {
@@ -122,8 +148,6 @@ class WeeWXMenuDelegate extends WatchUi.MenuInputDelegate {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;
 				var arr = toArray(Application.getApp().getProperty("directions"),",");
-System.println("Directions : " + Application.getApp().getProperty("directions"));
-//				var arr = ["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
 				return(arr[(val.toNumber() % 16)]);
 			}
 			else {

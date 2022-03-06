@@ -17,7 +17,7 @@ class WeeWXDelegate extends WatchUi.BehaviorDelegate {
     //! Handle the menu event
     //! @return true if handled, false otherwise
     public function onMenu() as Boolean {
-		var thisMenu = new WatchUi.Menu();
+/*		var thisMenu = new WatchUi.Menu();
 		
 		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
 		for (var i = 1; i <= 5; i++) {
@@ -26,11 +26,23 @@ class WeeWXDelegate extends WatchUi.BehaviorDelegate {
 		
 		WatchUi.pushView(thisMenu, new $.WeeWXMenuDelegate(), WatchUi.SLIDE_UP );
 
-        return true;
+        return true;*/
+    }
+
+    public function onBack() as Void {
+		var _message = Application.getApp().getProperty("message");
+		if (_message == null) {		 
+System.println("message is null in WeeWXDelegate, exiting");
+	    } else {
+System.println("message is NOT null in WeeWXDelegate, poping up");
+			Application.getApp().setProperty("message", null);
+            WatchUi.requestUpdate();
+			return true;
+	    }
     }
 
     public function onSelect() as Boolean {
-		var thisMenu = new WatchUi.Menu();
+/*		var thisMenu = new WatchUi.Menu();
 		
 		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
 		for (var i = 1; i <= 5; i++) {
@@ -39,10 +51,10 @@ class WeeWXDelegate extends WatchUi.BehaviorDelegate {
 		
 		WatchUi.pushView(thisMenu, new $.WeeWXMenuDelegate(), WatchUi.SLIDE_UP );
 
-        return true;
+        return true;*/
     }
 
-	function addMenuItem(menu, slot)
+/*	function addMenuItem(menu, slot)
 	{
 		var _slot_str = "option_slot" + slot + "_name";
 		var _slot_data = Application.getApp().getProperty(_slot_str);
@@ -64,5 +76,5 @@ class WeeWXDelegate extends WatchUi.BehaviorDelegate {
 				menu.addItem(_slot_data, :Item5);
 				break;
 		}
-	}
+	}*/
 }
