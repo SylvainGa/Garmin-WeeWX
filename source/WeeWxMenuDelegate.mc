@@ -9,23 +9,13 @@ import Toybox.WatchUi;
 
 //! Input handler to respond to main menu selections
 class WeeWXMenuDelegate extends WatchUi.BehaviorDelegate {
-
+	var _handler;
+	
     //! Constructor
-    public function initialize() {
-System.println("WeeWXMenuDelegate initializing");
+    public function initialize(handler) {
+logMessage("WeeWXMenuDelegate initializing");
         BehaviorDelegate.initialize();
-    }
-
-    function onKey(keyEvent) {
-        System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
-        return true;
-    }
-
-    public function onTap(item as Symbol) as Void {
-System.println("Tap!");
-		Application.getApp().setProperty("message", null);
-        WatchUi.requestUpdate();
-        return true;
+		_handler = handler;
     }
 
     //! Handle a menu item being selected
@@ -46,31 +36,12 @@ System.println("Tap!");
         } else if (item == :Item5) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot5_name"));
             makeRequest(Application.getApp().getProperty("option_slot5_url"));
-        } else if (item == :Back) {
-			Application.getApp().setProperty("exit", true);
-System.println("Back!");
-            WatchUi.requestUpdate();
         }
 		return true;
     }
 
-    public function onBack() as Void {
-		var _message = Application.getApp().getProperty("message");
-		if (_message == null) {		 
-System.println("message is null in WeeWXMenuDelegate, exiting");
-			Application.getApp().setProperty("exit", true);
-            WatchUi.requestUpdate();
-	    } else {
-System.println("message is NOT null in WeeWXMenuDelegate, poping up");
-			Application.getApp().setProperty("message", null);
-            WatchUi.requestUpdate();
-			return true;
-	    }
-    }
-    
    private function makeRequest(url) as Void {
-		Application.getApp().setProperty("message", WatchUi.loadResource(Rez.Strings.Awaiting_response));
-
+		_handler.invoke(WatchUi.loadResource(Rez.Strings.Awaiting_response));
 		var params = {};
 		var headers = {
 			"Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
@@ -107,7 +78,6 @@ System.println("message is NOT null in WeeWXMenuDelegate, poping up");
     
                     if (!(field1_name.toString().equals(""))) {
                         field1 = convert(current[field1_name], field1_name);
-System.println(field1_name + " - " + field1);
                     }
                     if (!(field2_name.toString().equals(""))) {
                         field2 = convert(current[field2_name], field2_name);
@@ -146,12 +116,12 @@ System.println(field1_name + " - " + field1);
             _message = WatchUi.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
         }
 
-		Application.getApp().setProperty("message", _message);
+		_handler.invoke(_message);
         WatchUi.requestUpdate();
     }
 
     function convert(value, name) {
-System.println(name + " - " + value);
+//logMessage(name + " - " + value);
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;

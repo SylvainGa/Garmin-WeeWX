@@ -3,6 +3,15 @@
 // Subject to Garmin SDK License Agreement and Wearables
 // Application Developer Agreement.
 
+/*
+outTemp
+windSpeed
+windDir
+windGust
+$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$\nRafale : $5$ KMH
+N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
+*/
+
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
@@ -11,15 +20,32 @@ import Toybox.WatchUi;
 class WeeWXView extends WatchUi.View {
 	var thisMenu;
 	var thisDelegate;
-	
+	var _message;
+	var _status;
+	var _menuDisplayed;
+			
     //! Constructor
     public function initialize() {
         View.initialize();
-        Application.getApp().setProperty("message", null);
-        Application.getApp().setProperty("exit", false);
-        Application.getApp().setProperty("menuDisplayed", false);
-        thisMenu = null;
+        _message = null;
+        _menuDisplayed = false;
+        _status = -1;
+
+		logMessage("Creating menu and delegate");
+		thisMenu = new WatchUi.Menu();
+		thisDelegate = new WeeWXMenuDelegate(method(:onReceive));
+		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
+
+		for (var i = 1, index = 1; i <= 5; i++) {
+			var _slot_str = "option_slot" + i + "_name";
+			var _slot_data = Application.getApp().getProperty(_slot_str);
+			if (_slot_data != null && !_slot_data.equals("")) {
+				addMenuItem(thisMenu, index, _slot_data);
+				index = index + 1;
+			}
+		}
     }
+    
     //! Load your resources here
     //! @param dc Device context
     public function onLayout(dc as Dc) as Void {
@@ -30,65 +56,64 @@ class WeeWXView extends WatchUi.View {
     //! the state of this View and prepare it to be shown. This includes
     //! loading resources into memory.
     public function onShow() as Void {
-System.println("Showing");
-    }
-
-    //! Update the view
-    //! @param dc Device context
-    public function onUpdate(dc as Dc) as Void {
-		var _message = Application.getApp().getProperty("message");
-		if (_message == null) {		 
-//	        View.onUpdate(dc);
-
-			var _exit = Application.getApp().getProperty("exit");
-			if (_exit) {
-System.println("Exiting");
-				WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-				System.exit();
+    	if (_message == null) {
+			logMessage("Showing without text status is " + _status);
+			if (_status == 0) {
+				logMessage("Exiting");
+				_status = 2;
+				return true;
 			}
-
-			if (thisMenu == null) {
-System.println("Creating menu and delegate");
-				thisMenu = new WatchUi.Menu();
-				thisDelegate = new $.WeeWXMenuDelegate();
-				thisMenu.setTitle(Rez.Strings.MainMenuTitle);
-	
-				for (var i = 1, index = 1; i <= 5; i++) {
-					var _slot_str = "option_slot" + i + "_name";
-					var _slot_data = Application.getApp().getProperty(_slot_str);
-					if (_slot_data != null && !_slot_data.equals("")) {
-						addMenuItem(thisMenu, index, _slot_data);
-						index = index + 1;
-					}
-				}
-//				thisMenu.addItem(WatchUi.loadResource($.Rez.Strings.back), :Back);
-
-			}
-			var _menuDisplayed = Application.getApp().getProperty("menuDisplayed");
-			if (_menuDisplayed == false) {
-System.println("pushing menu and delegate");
-		        Application.getApp().setProperty("menuDisplayed", true);
-				WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_UP );
-			} else {
-System.println("Menu already up, skipping pushView");
-			}
-        }
-        else {
-System.println("Displaying text");
-	        Application.getApp().setProperty("menuDisplayed", false);
-			dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-			dc.clear();
-			dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_MEDIUM, _message, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        }
+		} else {
+			logMessage("Showing with text status is " + _status);
+		}
+		
+		return false;
     }
 
     //! Called when this View is removed from the screen. Save the
     //! state of this View here. This includes freeing resources from
     //! memory.
     public function onHide() as Void {
-System.println("Hiding");
+		logMessage("Hiding status is " + _status);
+		if (_status == -1) {
+			_status = 0;
+		}
     }
     
+    function onReceive(args) as Void {
+    	if (args != null) {
+			logMessage("onReceive with text");
+			if (args.equals(WatchUi.loadResource(Rez.Strings.Awaiting_response))) {
+				_status = 1;
+			}
+    	}
+    	else {
+			logMessage("onReceive null");
+    	}
+		_message = args;
+    }
+
+    //! Update the view
+    //! @param dc Device context
+    public function onUpdate(dc as Dc) as Void {
+		if (_message == null) {		 
+			if (_menuDisplayed == false) {
+				logMessage("pushing menu and delegate");
+		        _menuDisplayed = true;
+				WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_UP );
+			} else {
+				logMessage("Menu already up, skipping pushView");
+			}
+        }
+        else {
+			logMessage("Displaying text");
+	        _menuDisplayed = false;
+			dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+			dc.clear();
+			dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_MEDIUM, _message, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        }
+    }
+
  	function addMenuItem(menu, slot, _slot_data)
 	{
 		switch (slot) {
@@ -110,3 +135,4 @@ System.println("Hiding");
 		}
 	}
 }
+

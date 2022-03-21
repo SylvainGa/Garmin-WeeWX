@@ -4,77 +4,48 @@
 // Application Developer Agreement.
 
 import Toybox.Lang;
+import Toybox.System;
 import Toybox.WatchUi;
 
-//! Handle input for the home view
+//! Input handler to respond to main menu selections
 class WeeWXDelegate extends WatchUi.BehaviorDelegate {
-
+	var _view;
+	var _handler;
+	
     //! Constructor
-    public function initialize() {
+    public function initialize(view as WeeWXView, handler) {
+logMessage("WeeWXDelegate initializing");
         BehaviorDelegate.initialize();
+        _view = view;
+		_handler = handler;
     }
 
-    //! Handle the menu event
-    //! @return true if handled, false otherwise
-    public function onMenu() as Boolean {
-/*		var thisMenu = new WatchUi.Menu();
-		
-		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
-		for (var i = 1; i <= 5; i++) {
-			addMenuItem(thisMenu, i);
-		}
-		
-		WatchUi.pushView(thisMenu, new $.WeeWXMenuDelegate(), WatchUi.SLIDE_UP );
+    function onKey(keyEvent) {
+        logMessage(keyEvent.getKey());         // e.g. KEY_MENU = 7
+        return true;
+    }
 
-        return true;*/
+    public function onTap(item as Symbol) as Void {
+logMessage("WeeWXDelegate:Tap with _view._status at " + _view._status);
+		if (_view._status == 1) {
+			_view._status = 0;
+			_handler.invoke(null);
+	        WatchUi.requestUpdate();
+		}
+        return true;
     }
 
     public function onBack() as Void {
-		var _message = Application.getApp().getProperty("message");
-		if (_message == null) {		 
-System.println("message is null in WeeWXDelegate, exiting");
-	    } else {
-System.println("message is NOT null in WeeWXDelegate, poping up");
-			Application.getApp().setProperty("message", null);
-            WatchUi.requestUpdate();
+logMessage("WeeWXDelegate:Back with _view._status at " + _view._status);
+		if (_view._status == 1) {
+			_view._status = 0;
+			_handler.invoke(null);
+	        WatchUi.requestUpdate();
 			return true;
-	    }
-    }
-
-    public function onSelect() as Boolean {
-/*		var thisMenu = new WatchUi.Menu();
-		
-		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
-		for (var i = 1; i <= 5; i++) {
-			addMenuItem(thisMenu, i);
 		}
-		
-		WatchUi.pushView(thisMenu, new $.WeeWXMenuDelegate(), WatchUi.SLIDE_UP );
-
-        return true;*/
-    }
-
-/*	function addMenuItem(menu, slot)
-	{
-		var _slot_str = "option_slot" + slot + "_name";
-		var _slot_data = Application.getApp().getProperty(_slot_str);
-		
-		switch (slot) {
-			case 1:
-				menu.addItem(_slot_data, :Item1);
-				break;
-			case 2:
-				menu.addItem(_slot_data, :Item2);
-				break;
-			case 3:
-				menu.addItem(_slot_data, :Item3);
-				break;
-			case 4:
-				menu.addItem(_slot_data, :Item4);
-				break;
-			case 5:
-				menu.addItem(_slot_data, :Item5);
-				break;
+		else {
+logMessage("Exiting?");
+			return false;
 		}
-	}*/
+    }
 }

@@ -7,6 +7,8 @@
 import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
+using Toybox.System;
+
 
 //! This sample shows how to define menus using resources and demonstrates the
 //! use of nested menus. Press the Menu button to display an on-screen menu, which
@@ -32,18 +34,18 @@ System.println("Stopping");
     }
 
     //! Return the initial views for the app
-    //! @return Array Pair [View, InputDelegate]
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
-        return [new $.WeeWXView(), new $.WeeWXMenuDelegate()] as Array<Views or BehaviorDelegate>;
+    	var view = new $.WeeWXView(); 
+        return [view, new WeeWXDelegate(view, view.method(:onReceive))];
     }
+}
 
-/*    public function getInitialView() {
-		mView = new WeeWXView();
-		return [mView];    	
-    }
+(:debug)
+function logMessage(message) {
+    System.println(message);
+}
 
-	function getView() {
-		return mView;
-	}
-*/
+(:release)
+function logMessage(message) {
+    
 }
