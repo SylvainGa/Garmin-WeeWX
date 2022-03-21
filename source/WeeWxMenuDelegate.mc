@@ -12,7 +12,13 @@ class WeeWXMenuDelegate extends WatchUi.BehaviorDelegate {
 
     //! Constructor
     public function initialize() {
-        MenuInputDelegate.initialize();
+System.println("WeeWXMenuDelegate initializing");
+        BehaviorDelegate.initialize();
+    }
+
+    function onKey(keyEvent) {
+        System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
+        return true;
     }
 
     public function onTap(item as Symbol) as Void {

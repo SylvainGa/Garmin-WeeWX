@@ -66,7 +66,7 @@ System.println("Creating menu and delegate");
 			}
 			var _menuDisplayed = Application.getApp().getProperty("menuDisplayed");
 			if (_menuDisplayed == false) {
-System.println("Pushing menu and delegate");
+System.println("pushing menu and delegate");
 		        Application.getApp().setProperty("menuDisplayed", true);
 				WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_UP );
 			} else {
