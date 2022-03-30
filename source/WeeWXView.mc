@@ -8,7 +8,7 @@ outTemp
 windSpeed
 windDir
 windGust
-$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$\nRafale : $5$ KMH
+$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$\nRafale : $5$ KMH\nFac. vent: $6$ KMH\nInd. chaleur: $7$ KMH\nHumidité: $8$%
 N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
 */
 

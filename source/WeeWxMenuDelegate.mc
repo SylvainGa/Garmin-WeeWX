@@ -63,31 +63,35 @@ logMessage("WeeWXMenuDelegate initializing");
     public function onReceive(responseCode as Number, data as Dictionary?) as Void {
     	var _message = null;
         if (responseCode == 200) {
-	        if (data instanceof String) {
+	        if (data instanceof String) { // String is an error message
 	            _message = data;
-	        } else if (data instanceof Dictionary) {
+	        } else if (data instanceof Dictionary) { // Dictionary is the answer from the web request call
 				var current = data["current"];
 	
 				if (current instanceof Dictionary) {
-					var title = Application.getApp().getProperty("title");
-                    var field1_name = Application.getApp().getProperty("field1");
-                    var field2_name = Application.getApp().getProperty("field2");
-                    var field3_name = Application.getApp().getProperty("field3");
-                    var field4_name = Application.getApp().getProperty("field4");
-                    var field1 = null, field2 = null, field3 = null, field4 = null;
-    
-                    if (!(field1_name.toString().equals(""))) {
-                        field1 = convert(current[field1_name], field1_name);
-                    }
-                    if (!(field2_name.toString().equals(""))) {
-                        field2 = convert(current[field2_name], field2_name);
-                    }
-                    if (!(field3_name.toString().equals(""))) {
-                        field3 = convert(current[field3_name], field3_name);
-                    }
-                    if (!(field4_name.toString().equals(""))) {
-                        field4 = convert(current[field4_name], field4_name);
-                    }
+					// Calculate how many fields of data we have
+					var numberOfFields;
+					for (numberOfFields = 1; numberOfFields <= 16; numberOfFields++) {
+						var field = Application.getApp().getProperty("field" + numberOfFields);
+						if (field == null || field.equals("") == true) {
+							break;
+						}
+					}
+					var fields_name = new [numberOfFields + 1];
+					var fields = new [numberOfFields + 1];
+					
+					fields_name[0] = "Title";
+					fields[0] = Application.getApp().getProperty("title");
+
+					// Fill in the fields
+					for (var i = 1; i <= numberOfFields; i++) {
+						fields_name[i] = Application.getApp().getProperty("field" + i);
+						fields[i] = null;
+
+	                    if (!(fields_name[i].toString().equals(""))) {
+	                        fields[i] = convert(current[fields_name[i]], fields_name[i]);
+	                    }
+					}
 
 					// Need to parse our format string to replace '\' 'n' characters with the real \n follow by a space
 					var _formatStr = Application.getApp().getProperty("display");
@@ -98,10 +102,16 @@ logMessage("WeeWXMenuDelegate initializing");
 							array[i + 1] = ' ';
 						}
 					}
+					
+					// Build the strings to display
 					_formatStr = StringUtil.charArrayToString(array);
+					var text = Lang.format(_formatStr, fields);
+					
+					// Push the data
+		            var view = new ShowDataView(text);
+		            var delegate = new ShowDataDelegate(view);
+		            WatchUi.pushView(view, delegate, WatchUi.SLIDE_LEFT);
 
-					// _message = Lang.format("$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$\nRafale : $5$ KMH", [title, field1, field2, field3, field4]);
-					_message = Lang.format(_formatStr, [title, field1, field2, field3, field4]);
 				}
 				else {
 		            _message = WatchUi.loadResource(Rez.Strings.NoCurrentValue);
@@ -125,7 +135,7 @@ logMessage("WeeWXMenuDelegate initializing");
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;
-				var arr = toArray(Application.getApp().getProperty("directions"),",");
+				var arr = to_array(Application.getApp().getProperty("directions"),",");
 				return(arr[(val.toNumber() % 16)]);
 			}
 			else {
@@ -179,28 +189,5 @@ logMessage("WeeWXMenuDelegate initializing");
 	    } else {
 	        return "???";
 	    }
-	}
-	
-	function toArray(string, splitter) {
-		var array = new [16]; //Use maximum expected length
-		var index = 0;
-		var location;
-
-		do {
-			location = string.find(splitter);
-			if (location != null) {
-				array[index] = string.substring(0, location);
-				string = string.substring(location + 1, string.length());
-				index++;
-			}
-		} while (location != null);
-
-		array[index] = string;
-		
-		var result = new [index];
-		for (var i = 0; i < index; i++) {
-			result = array;
-		}
-		return result;
 	}
 }

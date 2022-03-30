@@ -51,6 +51,42 @@
 	<setting propertyKey="@Properties.field4" title="@Strings.field4">
 		<settingConfig type="alphaNumeric" />
 	</setting>
+	<setting propertyKey="@Properties.field5" title="@Strings.field5">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field6" title="@Strings.field6">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field7" title="@Strings.field7">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field8" title="@Strings.field8">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field9" title="@Strings.field9">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field10" title="@Strings.field10">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field11" title="@Strings.field11">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field12" title="@Strings.field12">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field13" title="@Strings.field13">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field14" title="@Strings.field14">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field15" title="@Strings.field15">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.field16" title="@Strings.field16">
+		<settingConfig type="alphaNumeric" />
+	</setting>
 	<setting propertyKey="@Properties.display" title="@Strings.display">
 		<settingConfig type="alphaNumeric" />
 	</setting>

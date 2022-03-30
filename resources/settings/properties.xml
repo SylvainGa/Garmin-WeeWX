@@ -14,6 +14,18 @@
 	<property id="field2" type="string"></property>
 	<property id="field3" type="string"></property>
 	<property id="field4" type="string"></property>
+	<property id="field5" type="string"></property>
+	<property id="field6" type="string"></property>
+	<property id="field7" type="string"></property>
+	<property id="field8" type="string"></property>
+	<property id="field9" type="string"></property>
+	<property id="field10" type="string"></property>
+	<property id="field11" type="string"></property>
+	<property id="field12" type="string"></property>
+	<property id="field13" type="string"></property>
+	<property id="field14" type="string"></property>
+	<property id="field15" type="string"></property>
+	<property id="field16" type="string"></property>
 	<property id="display" type="string"></property>
 	<property id="directions" type="string"></property>
 </properties>
