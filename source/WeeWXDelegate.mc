@@ -45,6 +45,7 @@ logMessage("WeeWXDelegate:Back with _view._status at " + _view._status);
 		}
 		else {
 logMessage("Exiting?");
+			WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 			return false;
 		}
     }

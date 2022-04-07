@@ -49,6 +49,7 @@ class WeeWXView extends WatchUi.View {
     //! Load your resources here
     //! @param dc Device context
     public function onLayout(dc as Dc) as Void {
+		logMessage("onLayout:Showing main layout");
         setLayout($.Rez.Layouts.MainLayout(dc));
     }
 
@@ -96,7 +97,11 @@ class WeeWXView extends WatchUi.View {
     //! Update the view
     //! @param dc Device context
     public function onUpdate(dc as Dc) as Void {
-		if (_message == null) {		 
+		if (_message == null) {
+			if (_status == 2) { // Asked to exit
+				logMessage("Asked to exit, what do we do now?");
+				WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+			}
 			if (_menuDisplayed == false) {
 				logMessage("pushing menu and delegate");
 		        _menuDisplayed = true;

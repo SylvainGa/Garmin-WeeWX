@@ -2,8 +2,12 @@
     <iq:application entry="WeeWXApp" id="909b963570a94a008d46712f97d166e9" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.2.0" name="@Strings.AppName" type="widget">
         <iq:products>
             <iq:product id="d2air"/>
+            <iq:product id="d2airx10"/>
+            <iq:product id="d2mach1"/>
+            <iq:product id="descentg1"/>
             <iq:product id="descentmk2"/>
             <iq:product id="descentmk2s"/>
+            <iq:product id="epix2"/>
             <iq:product id="fenix5plus"/>
             <iq:product id="fenix5splus"/>
             <iq:product id="fenix5xplus"/>
@@ -12,6 +16,9 @@
             <iq:product id="fenix6s"/>
             <iq:product id="fenix6spro"/>
             <iq:product id="fenix6xpro"/>
+            <iq:product id="fenix7"/>
+            <iq:product id="fenix7s"/>
+            <iq:product id="fenix7x"/>
             <iq:product id="fr245"/>
             <iq:product id="fr245m"/>
             <iq:product id="fr55"/>
@@ -33,6 +40,7 @@
             <iq:product id="marqgolfer"/>
             <iq:product id="venu"/>
             <iq:product id="venu2"/>
+            <iq:product id="venu2plus"/>
             <iq:product id="venu2s"/>
             <iq:product id="venud"/>
             <iq:product id="venusq"/>
