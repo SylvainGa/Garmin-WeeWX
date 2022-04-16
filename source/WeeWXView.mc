@@ -8,6 +8,9 @@ outTemp
 windSpeed
 windDir
 windGust
+windchill
+heatindex
+humidity
 
 $1$||Temp : $2$ C|Vit vent : $3$ KMH|Dir vent : $4$|Rafale : $5$ KMH|Fac. vent: $6$ KMH|Ind. chaleur: $7$ KMH|Humidité: $8$%
 N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
