@@ -15,7 +15,7 @@ class ShowDataView extends Ui.View {
         _data = data;
         _viewOffset = 0;
 
-		_array = to_array(_data,"\n");
+		_array = to_array(_data,"|");
 		for (var i = 0; i < 18; i++) {
 			if (_array[i] == null) {
 				_array[i] = "";

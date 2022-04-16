@@ -95,7 +95,7 @@ logMessage("WeeWXMenuDelegate initializing");
 
 					// Need to parse our format string to replace '\' 'n' characters with the real \n follow by a space
 					var _formatStr = Application.getApp().getProperty("display");
-					var array = _formatStr.toCharArray();
+/*					var array = _formatStr.toCharArray();
 					for (var i = 0; i < _formatStr.length() - 1; i++) {
 						if (array[i] == '\\' && array[i + 1] == 'n' ) {
 							array[i] = 10.toChar();
@@ -105,7 +105,7 @@ logMessage("WeeWXMenuDelegate initializing");
 					
 					// Build the strings to display
 					_formatStr = StringUtil.charArrayToString(array);
-					var text = Lang.format(_formatStr, fields);
+*/					var text = Lang.format(_formatStr, fields);
 					
 					// Push the data
 		            var view = new ShowDataView(text);
