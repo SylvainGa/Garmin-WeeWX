@@ -14,6 +14,35 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
+	function onNextPage() {
+		_view._viewOffset += 6;
+		if (_view._viewOffset > 12) {
+			_view._viewOffset = 12;
+		}
+
+		var i;
+		for (i = 0; i < 6; i++) {
+			if (_view._array[_view._viewOffset + i].equals("") != true) {
+				break;
+			}
+		}
+		if (i == 6) {
+			logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
+			_view._viewOffset -= 6;
+		}
+	    _view.requestUpdate();
+        return true;
+	}
+
+	function onPreviousPage() {
+		_view._viewOffset -= 6;
+		if (_view._viewOffset < 0) {
+			_view._viewOffset = 0;
+		}
+	    _view.requestUpdate();
+        return true;
+	}
+
     function onSwipe(swipeEvent) {
     	if (swipeEvent.getDirection() == 3) {
 			Ui.popView(Ui.SLIDE_IMMEDIATE);
@@ -38,7 +67,7 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 				}
 			}
 			if (i == 6) {
-logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
+				logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
 		    	_view._viewOffset -= 6;
 			}
 	    }	

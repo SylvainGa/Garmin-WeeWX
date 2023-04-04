@@ -1,14 +1,13 @@
-<strings>
+	<strings>
     <string id="AppName">WeeWX</string>
 	<string id="AppVersionTitle">Version de l'appli</string>
-    <string id="Prompt">Appuyez sur un boutton\nou l'écran pour\ncommencer</string>
 
     <string id="MainMenuTitle">Quelle sonde ?</string>
 
     <string id="Awaiting_response">En attente de\nla réponse</string>
-    <string id="Answer">$1$\n\nTemp : $2$ C\nVit vent : $3$ KMH\nDir vent : $4$</string>
     <string id="NoCurrentValue">Incapable de lire\nla température courante</string>
     <string id="FailedToRead">Incapable de lire\nErreur: </string>
+	<string id="back">Appuyer sur Retour\npour sortir</string>
 
 	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
 	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
@@ -38,5 +37,4 @@
 	<string id="field16">Champs 16</string>
 	<string id="display">Affichage</string>
 	<string id="directions">Direction du vent</string>
-	<string id="back">Retour</string>
 </strings>

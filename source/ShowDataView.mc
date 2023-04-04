@@ -55,11 +55,11 @@ class ShowDataView extends Ui.View {
 
 		var lineStart = (6 - i) / 2; 
 
-logMessage("_viewOffset is " + _viewOffset);
-logMessage("Line offset of " + i);
+		logMessage("_viewOffset is " + _viewOffset);
+		logMessage("Line offset of " + i);
 		var j;
 		for (i = lineStart, j = 0; j < 6 - lineStart; j++, i++) {
-logMessage("Line " + i + " is " + _array[_viewOffset + j] + " for j=" + j);
+			logMessage("Line " + i + " is " + _array[_viewOffset + j] + " for j=" + j);
 	        lineText[i].setText(_array[_viewOffset + j]);
 	        lineText[i].draw(dc);
 	    }

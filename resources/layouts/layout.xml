@@ -1,3 +1,0 @@
-<layout id="MainLayout">
-    <label text="Press Back to leave" x="50%" y="50%" font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_DK_GRAY" />
-</layout>

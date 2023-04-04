@@ -1,22 +1,22 @@
 <properties>
-	<property id="AppVersion" type="string">0.1.0</property>
-	<property id="option_slot1_url" type="string"></property>
-	<property id="option_slot2_url" type="string"></property>
+	<property id="AppVersion" type="string">0.2.0</property>
+	<property id="option_slot1_url" type="string">https://weewx.maison.duckdns.org/daily.json</property>
+	<property id="option_slot2_url" type="string">https://weewx.chalet.duckdns.org/daily.json</property>
 	<property id="option_slot3_url" type="string"></property>
 	<property id="option_slot4_url" type="string"></property>
 	<property id="option_slot5_url" type="string"></property>
-	<property id="option_slot1_name" type="string"></property>
-	<property id="option_slot2_name" type="string"></property>
+	<property id="option_slot1_name" type="string">Maison</property>
+	<property id="option_slot2_name" type="string">Chalet</property>
 	<property id="option_slot3_name" type="string"></property>
 	<property id="option_slot4_name" type="string"></property>
 	<property id="option_slot5_name" type="string"></property>
-	<property id="field1" type="string"></property>
-	<property id="field2" type="string"></property>
-	<property id="field3" type="string"></property>
-	<property id="field4" type="string"></property>
-	<property id="field5" type="string"></property>
-	<property id="field6" type="string"></property>
-	<property id="field7" type="string"></property>
+	<property id="field1" type="string">outTemp</property>
+	<property id="field2" type="string">windSpeed</property>
+	<property id="field3" type="string">windDir</property>
+	<property id="field4" type="string">windGust</property>
+	<property id="field5" type="string">windchill</property>
+	<property id="field6" type="string">heatIndex</property>
+	<property id="field7" type="string">humidity</property>
 	<property id="field8" type="string"></property>
 	<property id="field9" type="string"></property>
 	<property id="field10" type="string"></property>
@@ -26,6 +26,6 @@
 	<property id="field14" type="string"></property>
 	<property id="field15" type="string"></property>
 	<property id="field16" type="string"></property>
-	<property id="display" type="string"></property>
-	<property id="directions" type="string"></property>
+	<property id="display" type="string">$1$||Temp : $2$ C|Vit vent : $3$ KMH|Dir vent : $4$|Rafale : $5$ KMH|Fac. vent: $6$ C|Ind. chaleur: $7$ C|Humidité: $8$%</property>
+	<property id="directions" type="string">N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO</property>
 </properties>

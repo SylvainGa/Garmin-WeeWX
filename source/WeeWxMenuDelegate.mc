@@ -8,40 +8,41 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 //! Input handler to respond to main menu selections
-class WeeWXMenuDelegate extends WatchUi.BehaviorDelegate {
-	var _handler;
-	
+class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
+
     //! Constructor
-    public function initialize(handler) {
-logMessage("WeeWXMenuDelegate initializing");
-        BehaviorDelegate.initialize();
-		_handler = handler;
+    function initialize() {
+		logMessage("WeeWXMenuDelegate initializing");
+        Menu2InputDelegate.initialize();
     }
 
     //! Handle a menu item being selected
     //! @param item Symbol identifier of the menu item that was chosen
-    public function onMenuItem(item as Symbol) as Void {
-        if (item == :Item1) {
+    public function onSelect(item) {
+  		var id=item.getId();
+		
+		var view = new MessageView(WatchUi.loadResource(Rez.Strings.Awaiting_response), null);
+		WatchUi.pushView(view, null, WatchUi.SLIDE_IMMEDIATE);
+
+        if (id == :Item1) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot1_name"));
             makeRequest(Application.getApp().getProperty("option_slot1_url"));
-        } else if (item == :Item2) {
+        } else if (id == :Item2) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot2_name"));
             makeRequest(Application.getApp().getProperty("option_slot2_url"));
-        } else if (item == :Item3) {
+        } else if (id == :Item3) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot3_name"));
             makeRequest(Application.getApp().getProperty("option_slot3_url"));
-        } else if (item == :Item4) {
+        } else if (id == :Item4) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot4_name"));
             makeRequest(Application.getApp().getProperty("option_slot4_url"));
-        } else if (item == :Item5) {
+        } else if (id == :Item5) {
 			Application.getApp().setProperty("title", Application.getApp().getProperty("option_slot5_name"));
             makeRequest(Application.getApp().getProperty("option_slot5_url"));
         }
-		return true;
     }
 
    private function makeRequest(url) as Void {
-		_handler.invoke(WatchUi.loadResource(Rez.Strings.Awaiting_response));
 		var params = {};
 		var headers = {
 			"Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
@@ -61,10 +62,13 @@ logMessage("WeeWXMenuDelegate initializing");
     }
 
     public function onReceive(responseCode as Number, data as Dictionary?) as Void {
-    	var _message = null;
+		var message = null;
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+
         if (responseCode == 200) {
+			logMessage("data is " + data);
 	        if (data instanceof String) { // String is an error message
-	            _message = data;
+	            message = data;
 	        } else if (data instanceof Dictionary) { // Dictionary is the answer from the web request call
 				var current = data["current"];
 	
@@ -89,7 +93,9 @@ logMessage("WeeWXMenuDelegate initializing");
 						fields[i] = null;
 
 	                    if (!(fields_name[i].toString().equals(""))) {
-	                        fields[i] = convert(current[fields_name[i]], fields_name[i]);
+							if (current[fields_name[i]] != null) {
+		                        fields[i] = convert(current[fields_name[i]], fields_name[i]);
+							}
 	                    }
 					}
 
@@ -114,7 +120,7 @@ logMessage("WeeWXMenuDelegate initializing");
 
 				}
 				else {
-		            _message = WatchUi.loadResource(Rez.Strings.NoCurrentValue);
+		            message = WatchUi.loadResource(Rez.Strings.NoCurrentValue);
 				}
 	        }
         }
@@ -123,15 +129,17 @@ logMessage("WeeWXMenuDelegate initializing");
             if (data) {
             	errorStr = data.get("error");
             }
-            _message = WatchUi.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
+            message = WatchUi.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
         }
 
-		_handler.invoke(_message);
-        WatchUi.requestUpdate();
+		if (message != null) {
+			var view = new MessageView(message, 2000);
+			WatchUi.pushView(view, null, WatchUi.SLIDE_IMMEDIATE);
+		}
     }
 
     function convert(value, name) {
-//logMessage(name + " - " + value);
+		logMessage(name + " - " + value);
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;

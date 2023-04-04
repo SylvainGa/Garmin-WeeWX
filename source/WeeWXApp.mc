@@ -16,9 +16,6 @@ using Toybox.System;
 //! use of nested menus. Press the Menu button to display an on-screen menu, which
 //! has options to return to the home screen or display an auxiliary, nested menu.
 class WeeWXApp extends Application.AppBase {
-
-	var mView;
-	
     //! Constructor
     public function initialize() {
         AppBase.initialize();
@@ -32,13 +29,12 @@ class WeeWXApp extends Application.AppBase {
     //! Handle app shutdown
     //! @param state Shutdown arguments
     public function onStop(state as Dictionary?) as Void {
-System.println("Stopping");
     }
 
     //! Return the initial views for the app
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
     	var view = new $.WeeWXView(); 
-        return [view, new WeeWXDelegate(view, view.method(:onReceive))];
+        return [view];
     }
 }
 

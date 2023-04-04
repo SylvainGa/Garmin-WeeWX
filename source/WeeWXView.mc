@@ -9,139 +9,62 @@ windSpeed
 windDir
 windGust
 windchill
-heatindex
+heatIndex
 humidity
 
-$1$||Temp : $2$ C|Vit vent : $3$ KMH|Dir vent : $4$|Rafale : $5$ KMH|Fac. vent: $6$ KMH|Ind. chaleur: $7$ KMH|Humidité: $8$%
+$1$||Temp : $2$ C|Vit vent : $3$ KMH|Dir vent : $4$|Rafale : $5$ KMH|Fac. vent: $6$ C|Ind. chaleur: $7$ C|Humidité: $8$%
 N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
 */
 
-import Toybox.Graphics;
-import Toybox.Lang;
-import Toybox.WatchUi;
+using Toybox.Graphics as Gfx;
+using Toybox.Lang;
+using Toybox.WatchUi;
 
 //! View for the home screen
 class WeeWXView extends WatchUi.View {
-	var thisMenu;
-	var thisDelegate;
-	var _message;
-	var _status;
-	var _menuDisplayed;
-			
+	var _width, _height;
+	var _shown = false;
+
     //! Constructor
     public function initialize() {
         View.initialize();
-        _message = null;
-        _menuDisplayed = false;
-        _status = -1;
+	}
 
-		logMessage("Creating menu and delegate");
-		thisMenu = new WatchUi.Menu();
-		thisDelegate = new WeeWXMenuDelegate(method(:onReceive));
-		thisMenu.setTitle(Rez.Strings.MainMenuTitle);
-
-		for (var i = 1, index = 1; i <= 5; i++) {
-			var _slot_str = "option_slot" + i + "_name";
-			var _slot_data = Application.getApp().getProperty(_slot_str);
-			if (_slot_data != null && !_slot_data.equals("")) {
-				addMenuItem(thisMenu, index, _slot_data);
-				index = index + 1;
-			}
-		}
-    }
-    
-    //! Load your resources here
-    //! @param dc Device context
-    public function onLayout(dc as Dc) as Void {
-		logMessage("onLayout:Showing main layout");
-        setLayout($.Rez.Layouts.MainLayout(dc));
-    }
-
-    //! Called when this View is brought to the foreground. Restore
-    //! the state of this View and prepare it to be shown. This includes
-    //! loading resources into memory.
     public function onShow() as Void {
-    	if (_message == null) {
-			logMessage("Showing without text status is " + _status);
-			if (_status == 0) {
-				logMessage("Exiting");
-				_status = 2;
-				return true;
+
+		if (!_shown) {
+			var thisMenu;
+			var thisDelegate;
+
+			logMessage("Creating menu and delegate");
+			thisMenu = new WatchUi.Menu2({:title=>Rez.Strings.MainMenuTitle});
+			thisDelegate = new WeeWXMenuDelegate();
+
+			var slots = [ :Item1, :Item2, :Item3, :Item4, :Item5 ];
+			for (var i = 1, index = 0; i <= 5; i++) {
+				var _slot_str = "option_slot" + i + "_name";
+				var _slot_data = Application.getApp().getProperty(_slot_str);
+				if (_slot_data != null && !_slot_data.equals("")) {
+					thisMenu.addItem(new MenuItem(_slot_data, null, slots[index], {}));
+					index = index + 1;
+				}
 			}
-		} else {
-			logMessage("Showing with text status is " + _status);
+
+			WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_IMMEDIATE);
+			_shown = true;
 		}
-		
-		return false;
     }
 
-    //! Called when this View is removed from the screen. Save the
-    //! state of this View here. This includes freeing resources from
-    //! memory.
-    public function onHide() as Void {
-		logMessage("Hiding status is " + _status);
-		if (_status == -1) {
-			_status = 0;
-		}
-    }
-    
-    function onReceive(args) as Void {
-    	if (args != null) {
-			logMessage("onReceive with text");
-			if (args.equals(WatchUi.loadResource(Rez.Strings.Awaiting_response))) {
-				_status = 1;
-			}
-    	}
-    	else {
-			logMessage("onReceive null");
-    	}
-		_message = args;
+    public function onLayout(dc) as Void {
+		logMessage("onLayout:Showing main layout");
+		_width = dc.getWidth();
+		_height = dc.getHeight();
     }
 
-    //! Update the view
-    //! @param dc Device context
-    public function onUpdate(dc as Dc) as Void {
-		if (_message == null) {
-			if (_status == 2) { // Asked to exit
-				logMessage("Asked to exit, what do we do now?");
-				WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-			}
-			if (_menuDisplayed == false) {
-				logMessage("pushing menu and delegate");
-		        _menuDisplayed = true;
-				WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_UP );
-			} else {
-				logMessage("Menu already up, skipping pushView");
-			}
-        }
-        else {
-			logMessage("Displaying text");
-	        _menuDisplayed = false;
-			dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
-			dc.clear();
-			dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_MEDIUM, _message, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        }
-    }
-
- 	function addMenuItem(menu, slot, _slot_data)
-	{
-		switch (slot) {
-			case 1:
-				menu.addItem(_slot_data, :Item1);
-				break;
-			case 2:
-				menu.addItem(_slot_data, :Item2);
-				break;
-			case 3:
-				menu.addItem(_slot_data, :Item3);
-				break;
-			case 4:
-				menu.addItem(_slot_data, :Item4);
-				break;
-			case 5:
-				menu.addItem(_slot_data, :Item5);
-				break;
-		}
+	function onUpdate(dc) {
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+		dc.clear();
+		dc.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(_width / 2, _height / 2, Gfx.FONT_SMALL, WatchUi.loadResource(Rez.Strings.back), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
 	}
 }
-
