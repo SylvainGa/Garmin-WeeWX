@@ -1,6 +1,6 @@
 <strings>
     <string id="AppName">WeeWX</string>
-	<string id="AppVersionTitle">App Version</string>
+    <string id="AppNameVersion">WeeWX V0.94b</string>
 
     <string id="MainMenuTitle">Which probe?</string>
 

@@ -1,5 +1,5 @@
 <properties>
-	<property id="AppVersion" type="string">0.2.0</property>
+	<property id="AppVersion" type="string"></property>
 	<property id="option_slot1_url" type="string">https://weewx.maison.duckdns.org/daily.json</property>
 	<property id="option_slot2_url" type="string">https://weewx.chalet.duckdns.org/daily.json</property>
 	<property id="option_slot3_url" type="string"></property>

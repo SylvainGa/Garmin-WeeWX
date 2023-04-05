@@ -1,8 +1,6 @@
 	<strings>
     <string id="AppName">WeeWX</string>
-	<string id="AppVersionTitle">Version de l'appli</string>
-
-    <string id="MainMenuTitle">Quelle sonde ?</string>
+     <string id="MainMenuTitle">Quelle sonde ?</string>
 
     <string id="Awaiting_response">En attente de\nla réponse</string>
     <string id="NoCurrentValue">Incapable de lire\nla température courante</string>

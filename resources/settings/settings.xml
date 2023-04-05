@@ -1,5 +1,5 @@
 <settings>
-	<setting propertyKey="@Properties.AppVersion" title="@Strings.AppVersionTitle">
+	<setting propertyKey="@Properties.AppVersion" title="@Strings.AppNameVersion">
 		<settingConfig type="alphaNumeric" readonly="true"/>
 	</setting>
 
