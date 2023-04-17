@@ -23,23 +23,23 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 
         if (id == :Item1) {
 			Storage.setValue("title", Properties.getValue("option_slot1_name"));
-            makeRequest(Properties.getValue("option_slot1_url"));
+            makeRequest(Properties.getValue("option_slot1_url"), id);
         } else if (id == :Item2) {
 			Storage.setValue("title", Properties.getValue("option_slot2_name"));
-            makeRequest(Properties.getValue("option_slot2_url"));
+            makeRequest(Properties.getValue("option_slot2_url"), id);
         } else if (id == :Item3) {
 			Storage.setValue("title", Properties.getValue("option_slot3_name"));
-            makeRequest(Properties.getValue("option_slot3_url"));
+            makeRequest(Properties.getValue("option_slot3_url"), id);
         } else if (id == :Item4) {
 			Storage.setValue("title", Properties.getValue("option_slot4_name"));
-            makeRequest(Properties.getValue("option_slot4_url"));
+            makeRequest(Properties.getValue("option_slot4_url"), id);
         } else if (id == :Item5) {
 			Storage.setValue("title", Properties.getValue("option_slot5_name"));
-            makeRequest(Properties.getValue("option_slot5_url"));
+            makeRequest(Properties.getValue("option_slot5_url"), id);
         }
     }
 
-   private function makeRequest(url) as Void {
+   private function makeRequest(url, id) as Void {
 		var params = {};
 		var headers = {
 			"Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
@@ -47,7 +47,8 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 		var options = {
 			:method => Communications.HTTP_REQUEST_METHOD_GET,
 			:headers => headers,
-			:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
+			:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
+			:context => id
 		}; 
 
 		if (Communications has :makeWebRequest ) {
@@ -58,7 +59,7 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 		}
     }
 
-    public function onReceive(responseCode as Number, data as Dictionary?) as Void {
+    public function onReceive(responseCode as Number, data as Dictionary?, id) as Void {
 		var message = null;
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 
@@ -108,6 +109,15 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 					}
 					else {
 		            	message = WatchUi.loadResource(Rez.Strings.BadFormat);
+					}
+
+					// Check if it's for our main entry, if so, update its glance with what we received
+					if (id == :Item1) {
+						_formatStr = Properties.getValue("glance");
+						if (_formatStr != null) {
+							var text = Lang.format(_formatStr, fields);
+							Storage.setValue("text", text);
+						}
 					}
 				}
 				else {

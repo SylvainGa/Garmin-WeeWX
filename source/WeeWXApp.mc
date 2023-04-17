@@ -14,14 +14,14 @@ class WeeWXApp extends Application.AppBase {
 
     //! Constructor
     public function initialize() {
-		/*DEBUG*/ logMessage("WeeWXApp: initialize called");
+		/*DEBUG*/ logMessage("initialize called");
         AppBase.initialize();
     }
 
     //! Handle app startup
     //! @param state Startup arguments
     public function onStart(state as Dictionary?) as Void {
-		/*DEBUG*/ logMessage("WeeWXApp: onStart called");
+		/*DEBUG*/ logMessage("onStart called");
     }
 
     //! Handle app shutdown
@@ -31,35 +31,38 @@ class WeeWXApp extends Application.AppBase {
 
     //! Return the initial views for the app
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
-		/*DEBUG*/ logMessage("WeeWXApp: getInitialView called");
+		/*DEBUG*/ logMessage("getInitialView called");
     	var view = new $.WeeWXView(); 
         return [view];
     }
 
     function getServiceDelegate(){
-		/*DEBUG*/ logMessage("WeeWXApp: getServiceDelegate called");
+		/*DEBUG*/ logMessage("getServiceDelegate called");
 //		Storage.setValue("message", "Waiting for data");
         return [ new MyServiceDelegate() ];
     }
 
     (:glance)
     function getGlanceView() {
-		/*DEBUG*/ logMessage("WeeWXApp: getGlanceView called");
+		/*DEBUG*/ logMessage("getGlanceView called");
 
         Background.registerForTemporalEvent(new Time.Duration(60*5));
         return [ new GlanceView() ];
     }
 
     function onBackgroundData(data) {
-		/*DEBUG*/ logMessage("WeeWXApp: onBackgroundData received '" + data + "'");
-        if (data != null) {
+		/*DEBUG*/ logMessage("onBackgroundData received '" + data + "'");
+        if (data != null && data instanceof Dictionary) {
 			Storage.setValue("message", data.get("message"));
 			Storage.setValue("text", data.get("text"));
         }
+		else {
+			/*DEBUG*/ logMessage("onBackgroundData data not a dictionary: " + data);
+		}
 
         Background.registerForTemporalEvent(new Time.Duration(300));
 
-		/*DEBUG*/ logMessage("WeeWXApp: onBackgroundData requesting view update");
+		/*DEBUG*/ logMessage("onBackgroundData requesting view update");
         WatchUi.requestUpdate();
 	}
 }

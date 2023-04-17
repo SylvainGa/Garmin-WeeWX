@@ -114,7 +114,7 @@ class GlanceView extends Ui.GlanceView {
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
             if (text1Width > textMaxWidth) {
-                _xDir1 = -2;
+                _xDir1 = -4;
             }
             else {
                 _xDir1 = 0;
@@ -126,7 +126,7 @@ class GlanceView extends Ui.GlanceView {
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
             if (text2Width > textMaxWidth) {
-                _xDir2 = -2;
+                _xDir2 = -4;
             }
             else {
                 _xDir2 = 0;
@@ -138,7 +138,7 @@ class GlanceView extends Ui.GlanceView {
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
             if (text3Width > textMaxWidth) {
-                _xDir3 = -2;
+                _xDir3 = -4;
             }
             else {
                 _xDir3 = 0;
