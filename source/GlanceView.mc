@@ -77,7 +77,7 @@ class GlanceView extends Ui.GlanceView {
                 }
                 title = array[0];
                 text = array[2];
-                if (threeLines == true) {
+                if (threeLines == true && array.size() > 3) {
                     textExtra = array[3];
                 }
             }

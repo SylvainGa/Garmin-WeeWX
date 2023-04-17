@@ -3,9 +3,9 @@
 
 	<!--  GLANCE and MANIN view -->
     <string id="Awaiting_response" scope="background">En attente de la réponse</string>
-    <string id="NoCurrentValue" scope="background">Incapable de lire la température courante</string>
+    <string id="NoCurrentValue" scope="background">Incapable de lire la\ntempérature courante</string>
     <string id="FailedToRead" scope="background">Incapable de lire. Erreur: </string>
-    <string id="BadFormat" scope="background">vérifier votre configuration. Il y a erreur.</string>
+    <string id="BadFormat" scope="background">vérifier votre config.\nIl y a erreur.</string>
 	<string id="back">Appuyer sur Retour\npour sortir</string>
 
 	<!--  Main view only -->

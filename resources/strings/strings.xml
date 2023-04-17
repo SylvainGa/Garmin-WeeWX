@@ -6,7 +6,7 @@
     <string id="Awaiting_response" scope="background">Awaiting response</string>
     <string id="NoCurrentValue" scope="background">Unable to read current values</string>
     <string id="FailedToRead" scope="background">Failed to read. Error: </string>
-    <string id="BadFormat" scope="background">Check your configuration. Something is wrong.</string>
+    <string id="BadFormat" scope="background">Check your configuration\nSomething is wrong</string>
 	<string id="back">Hit Back to Exit</string>
 
 	<!--  Main view only -->
