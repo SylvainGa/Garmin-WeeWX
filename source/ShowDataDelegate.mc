@@ -5,6 +5,8 @@ using Toybox.System;
 using Toybox.Communications as Communications;
 using Toybox.Cryptography;
 using Toybox.Graphics;
+using Toybox.Application.Storage;
+using Toybox.Application.Properties;
 
 class ShowDataDelegate extends Ui.BehaviorDelegate {
 	var _view as ShowDataView;
@@ -22,12 +24,12 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 
 		var i;
 		for (i = 0; i < 6; i++) {
-			if (_view._array[_view._viewOffset + i].equals("") != true) {
+			if (_view._array[_view._viewOffset + i].length() > 0) {
 				break;
 			}
 		}
 		if (i == 6) {
-			logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
+			//DEBUG*/ logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
 			_view._viewOffset -= 6;
 		}
 	    _view.requestUpdate();
@@ -62,12 +64,12 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 
 			var i;
 			for (i = 0; i < 6; i++) {
-				if (_view._array[_view._viewOffset + i].equals("") != true) {
+				if (_view._array[_view._viewOffset + i].length() > 0) {
 					break;
 				}
 			}
 			if (i == 6) {
-				logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
+				//DEBUG*/ logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
 		    	_view._viewOffset -= 6;
 			}
 	    }	

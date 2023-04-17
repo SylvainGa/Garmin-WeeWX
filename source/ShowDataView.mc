@@ -2,6 +2,8 @@ using Toybox.Background;
 using Toybox.WatchUi as Ui;
 using Toybox.System;
 using Toybox.Time;
+using Toybox.Application.Storage;
+using Toybox.Application.Properties;
 
 class ShowDataView extends Ui.View {
     hidden var _display;
@@ -16,7 +18,7 @@ class ShowDataView extends Ui.View {
         _viewOffset = 0;
 
 		_array = to_array(_data,"|");
-		for (var i = 0; i < 18; i++) {
+		for (var i = 0; i < _array.size(); i++) {
 			if (_array[i] == null) {
 				_array[i] = "";
 			}
@@ -48,18 +50,18 @@ class ShowDataView extends Ui.View {
 		
 		// Find how many lines to show
 		for (i = 5; i > 0; --i) {
-			if (_array[_viewOffset + i].equals("") != true) {
+			if (_array[_viewOffset + i] != null && _array[_viewOffset + i].length() > 0) {
 				break;
 			}
 		}
 
 		var lineStart = (6 - i) / 2; 
 
-		logMessage("_viewOffset is " + _viewOffset);
-		logMessage("Line offset of " + i);
+		//DEBUG*/ logMessage("_viewOffset is " + _viewOffset);
+		//DEBUG*/ logMessage("Line offset of " + i);
 		var j;
 		for (i = lineStart, j = 0; j < 6 - lineStart; j++, i++) {
-			logMessage("Line " + i + " is " + _array[_viewOffset + j] + " for j=" + j);
+			//DEBUG*/ logMessage("Line " + i + " is " + _array[_viewOffset + j] + " for j=" + j);
 	        lineText[i].setText(_array[_viewOffset + j]);
 	        lineText[i].draw(dc);
 	    }

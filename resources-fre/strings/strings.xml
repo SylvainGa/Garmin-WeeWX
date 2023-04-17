@@ -1,11 +1,15 @@
 	<strings>
     <string id="AppName">WeeWX</string>
-     <string id="MainMenuTitle">Quelle sonde ?</string>
 
-    <string id="Awaiting_response">En attente de\nla réponse</string>
-    <string id="NoCurrentValue">Incapable de lire\nla température courante</string>
-    <string id="FailedToRead">Incapable de lire\nErreur: </string>
+	<!--  GLANCE and MANIN view -->
+    <string id="Awaiting_response" scope="background">En attente de la réponse</string>
+    <string id="NoCurrentValue" scope="background">Incapable de lire la température courante</string>
+    <string id="FailedToRead" scope="background">Incapable de lire. Erreur: </string>
+    <string id="BadFormat" scope="background">vérifier votre configuration. Il y a erreur.</string>
 	<string id="back">Appuyer sur Retour\npour sortir</string>
+
+	<!--  Main view only -->
+     <string id="MainMenuTitle">Quelle sonde ?</string>
 
 	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
 	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
@@ -34,5 +38,6 @@
 	<string id="field15">Champs 15</string>
 	<string id="field16">Champs 16</string>
 	<string id="display">Affichage</string>
+	<string id="glance">Aperçu rapide</string>
 	<string id="directions">Direction du vent</string>
 </strings>

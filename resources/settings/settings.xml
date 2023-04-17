@@ -90,6 +90,9 @@
 	<setting propertyKey="@Properties.display" title="@Strings.display">
 		<settingConfig type="alphaNumeric" />
 	</setting>
+	<setting propertyKey="@Properties.glance" title="@Strings.glance">
+		<settingConfig type="alphaNumeric" />
+	</setting>
 	<setting propertyKey="@Properties.directions" title="@Strings.directions">
 		<settingConfig type="alphaNumeric" />
 	</setting>

@@ -1,29 +1,27 @@
-//
-// Copyright 2016-2021 by Garmin Ltd. or its subsidiaries.
-// Subject to Garmin SDK License Agreement and Wearables
-// Application Developer Agreement.
-//
-
 import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.System;
+using Toybox.Application.Storage;
+using Toybox.Application.Properties;
 
+const MAX_SIZE = 18;
 
-//! This sample shows how to define menus using resources and demonstrates the
-//! use of nested menus. Press the Menu button to display an on-screen menu, which
-//! has options to return to the home screen or display an auxiliary, nested menu.
+(:background)
 class WeeWXApp extends Application.AppBase {
+
     //! Constructor
     public function initialize() {
+		/*DEBUG*/ logMessage("WeeWXApp: initialize called");
         AppBase.initialize();
     }
 
     //! Handle app startup
     //! @param state Startup arguments
     public function onStart(state as Dictionary?) as Void {
+		/*DEBUG*/ logMessage("WeeWXApp: onStart called");
     }
 
     //! Handle app shutdown
@@ -33,13 +31,42 @@ class WeeWXApp extends Application.AppBase {
 
     //! Return the initial views for the app
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
+		/*DEBUG*/ logMessage("WeeWXApp: getInitialView called");
     	var view = new $.WeeWXView(); 
         return [view];
     }
+
+    function getServiceDelegate(){
+		/*DEBUG*/ logMessage("WeeWXApp: getServiceDelegate called");
+//		Storage.setValue("message", "Waiting for data");
+        return [ new MyServiceDelegate() ];
+    }
+
+    (:glance)
+    function getGlanceView() {
+		/*DEBUG*/ logMessage("WeeWXApp: getGlanceView called");
+
+        Background.registerForTemporalEvent(new Time.Duration(60*5));
+        return [ new GlanceView() ];
+    }
+
+    function onBackgroundData(data) {
+		/*DEBUG*/ logMessage("WeeWXApp: onBackgroundData received '" + data + "'");
+        if (data != null) {
+			Storage.setValue("message", data.get("message"));
+			Storage.setValue("text", data.get("text"));
+        }
+
+        Background.registerForTemporalEvent(new Time.Duration(300));
+
+		/*DEBUG*/ logMessage("WeeWXApp: onBackgroundData requesting view update");
+        WatchUi.requestUpdate();
+	}
 }
 
+(:background)
 function to_array(string, splitter) {
-	var array = new [18]; //Use maximum expected length
+	var array = new [MAX_SIZE]; //Use maximum expected length
 	var index = 0;
 	var location;
 
@@ -50,28 +77,30 @@ function to_array(string, splitter) {
 			string = string.substring(location + 1, string.length());
 			index++;
 		}
-	} while (location != null);
+	} while (location != null && index < MAX_SIZE);
 
 	array[index] = string;
 	
-	var result = new [index];
-	for (var i = 0; i < index; i++) {
-		result = array;
+	var result = new [index + 1];
+	for (var i = 0; i <= index; i++) {
+		result[i] = array[i];
 	}
 	return result;
 }
 
 
-(:debug)
+(:debug, :background)
 function logMessage(message) {
 	var clockTime = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
 	var dateStr = clockTime.hour + ":" + clockTime.min.format("%02d") + ":" + clockTime.sec.format("%02d");
 	System.println(dateStr + " : " + message);
 }
 
-(:release)
+(:release, :background)
 function logMessage(output) {
 }
+
+(:background)
 var errorsStr = {
 	"0" => "UNKNOWN_ERROR",
 	"-1" => "BLE_ERROR",

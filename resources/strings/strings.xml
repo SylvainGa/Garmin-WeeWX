@@ -1,13 +1,16 @@
 <strings>
     <string id="AppName">WeeWX</string>
-    <string id="AppNameVersion">WeeWX V0.94b</string>
+    <string id="AppNameVersion">WeeWX V0.96.0</string>
 
-    <string id="MainMenuTitle">Which probe?</string>
-
-    <string id="Awaiting_response">Awaiting response</string>
-    <string id="NoCurrentValue">Unable to read current values</string>
-    <string id="FailedToRead">Failed to read\nError: </string>
+	<!--  GLANCE and MANIN view -->
+    <string id="Awaiting_response" scope="background">Awaiting response</string>
+    <string id="NoCurrentValue" scope="background">Unable to read current values</string>
+    <string id="FailedToRead" scope="background">Failed to read. Error: </string>
+    <string id="BadFormat" scope="background">Check your configuration. Something is wrong.</string>
 	<string id="back">Hit Back to Exit</string>
+
+	<!--  Main view only -->
+    <string id="MainMenuTitle">Which probe?</string>
 
 	<string id="OptionMenu_1_name">Slot 1 name</string>
 	<string id="OptionMenu_2_name">Slot 2 name</string>
@@ -36,5 +39,6 @@
 	<string id="field15">Field 15</string>
 	<string id="field16">Field 16</string>
 	<string id="display">Display</string>
+	<string id="glance">Glance</string>
 	<string id="directions">Directions</string>
 </strings>

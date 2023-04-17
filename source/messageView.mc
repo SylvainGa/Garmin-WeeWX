@@ -2,6 +2,8 @@ using Toybox.Graphics as Gfx;
 using Toybox.Lang;
 using Toybox.WatchUi;
 using Toybox.Timer as Timer;
+using Toybox.Application.Storage;
+using Toybox.Application.Properties;
 
 //! View for the home screen
 class MessageView extends WatchUi.View {
@@ -40,13 +42,13 @@ class MessageView extends WatchUi.View {
     }
 
     public function onLayout(dc) as Void {
-		logMessage("MessageView:onLayout:Showing main layout");
+		//DEBUG*/ logMessage("MessageView:onLayout:Showing main layout");
 		_width = dc.getWidth();
 		_height = dc.getHeight();
     }
 
 	function onUpdate(dc) {
-		logMessage("MessageView:onUpdate:Showing '" + _message + "'");
+		//DEBUG*/ logMessage("MessageView:onUpdate:Showing '" + _message + "'");
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
 		dc.clear();
 		dc.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);

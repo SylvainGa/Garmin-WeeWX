@@ -26,3 +26,16 @@ N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
 You can flip up/down to view more data if it doesn't fit on screen
 
 One caveat, this app starts with a menu, which is not supported and because of that, when you get out, you'll need an extra Back button or sweep to get out of the blank screen. Couldn't figure out a way to get out of that problem,
+
+What's new: 
+
+V0.96.0
+Adds scrolling text in Glance view if it's too long to fit the display area
+
+V0.95.1 Oops, forgot scope=background for the french language
+
+V0.95
+Adds support for glance view and Forerunner *65 watches
+
+V0.94
+Now using '|' as field separator (new line)
