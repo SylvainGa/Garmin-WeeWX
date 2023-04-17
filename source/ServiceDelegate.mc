@@ -14,7 +14,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
 
     // This fires on our temporal event - we're going to go off and get the vehicle data, only if we have a token and vehicle ID
     function onTemporalEvent() {
-		/*DEBUG*/ logMessage("onTemporalEvent: calling makeRequest for " + Properties.getValue("option_slot1_url"));
+		//DEBUG*/ logMessage("onTemporalEvent: calling makeRequest for " + Properties.getValue("option_slot1_url"));
 		Storage.setValue("title", Properties.getValue("option_slot1_name"));
         makeRequest(Properties.getValue("option_slot1_url"));
         //DEBUG*/onReceive(200, {"title" => "Station meteo","location" => "Gatineau, Qc, Haut de Labrosse","time" => "03/04/23 22:10:00","lat" => "45&#176; 30.49' N","lon" => "075&#176; 38.41' W","alt" => "102 meters","hardware" => "AcuRite 01036","uptime" => "1938156 seconds","serverUptime" => "1938156 seconds","weewxVersion" => "4.10.2","current" => {"outTemp" => "4.7","windchill" => "4.4","heatIndex" => "3.0","dewpoint" => "-0.9","humidity" => "67","insideHumidity" => "   N/A","barometer" => "1015.6","barometerTrendDelta" => "3 hours","barometerTrendData" => "3.1","windSpeed" => "5","windDir" => "289","windDirText" => "WNW","windGust" => "7","windGustDir" => "   N/A","rainRate" => "0.0","rainRateDaySum" => "0.5","insideTemp" => "20.3","rain" => "0.0"}});
@@ -44,7 +44,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
 		var text = null;
 
 		if (responseCode == 200) {
-			/*DEBUG*/ logMessage("background onReceive: responseCode is " + responseCode);
+			//DEBUG*/ logMessage("background onReceive: responseCode is " + responseCode);
 			//DEBUG*/ logMessage("background onReceive: data is " + data);
 	        if (data instanceof String) { // String is an error message
 	            message = data;
@@ -99,8 +99,8 @@ class MyServiceDelegate extends System.ServiceDelegate {
             message = App.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
         }
 
-		/*DEBUG*/ logMessage("background onReceive: message is '" + message + "'");
-		/*DEBUG*/ logMessage("background onReceive: text  is '" + text + "'");
+		//DEBUG*/ logMessage("background onReceive: message is '" + message + "'");
+		//DEBUG*/ logMessage("background onReceive: text  is '" + text + "'");
         Background.exit({"text" => text, "message" => message});
     }
 

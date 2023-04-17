@@ -3,13 +3,16 @@
 		<settingConfig type="alphaNumeric" readonly="true"/>
 	</setting>
 
+    <setting propertyKey="@Properties.smallfontsize" title="@Strings.smallfontsize">
+        <settingConfig type="boolean" required="true"/>
+    </setting>
+
 	<setting propertyKey="@Properties.option_slot1_name" title="@Strings.OptionMenu_1_name">
 		<settingConfig type="alphaNumeric" />
 	</setting>
 	<setting propertyKey="@Properties.option_slot1_url" title="@Strings.OptionMenu_1_url">
 		<settingConfig type="alphaNumeric" />
 	</setting>
-
 
 	<setting propertyKey="@Properties.option_slot2_name" title="@Strings.OptionMenu_2_name">
 		<settingConfig type="alphaNumeric" />

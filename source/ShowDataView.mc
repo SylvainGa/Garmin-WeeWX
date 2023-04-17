@@ -43,24 +43,25 @@ class ShowDataView extends Ui.View {
 
 		var lineText = new [6];
 		var i;
-		
-		for (i = 1; i < 7; i++) {
-			lineText[i - 1]	= View.findDrawableById("Line" + i + "Text");	            
+
+		// Fill up our line layout
+		for (i = 0; i < 6; i++) {
+			lineText[i]	= View.findDrawableById("Line" + (i + 1).toString() + "Text");	            
 		}
-		
+
 		// Find how many lines to show
-		for (i = 5; i > 0; --i) {
-			if (_array[_viewOffset + i] != null && _array[_viewOffset + i].length() > 0) {
+		for (i = 0; i < 6 && _viewOffset + i < _array.size(); i++) {
+			if (_array[_viewOffset + i] == null) {
 				break;
 			}
 		}
-
-		var lineStart = (6 - i) / 2; 
+		
+		var lineStart = ((6 - i) / 2.0 + 0.5).toNumber(); 
 
 		//DEBUG*/ logMessage("_viewOffset is " + _viewOffset);
 		//DEBUG*/ logMessage("Line offset of " + i);
 		var j;
-		for (i = lineStart, j = 0; j < 6 - lineStart; j++, i++) {
+		for (i = lineStart, j = 0; j < 6 - lineStart && _viewOffset + j < _array.size(); j++, i++) {
 			//DEBUG*/ logMessage("Line " + i + " is " + _array[_viewOffset + j] + " for j=" + j);
 	        lineText[i].setText(_array[_viewOffset + j]);
 	        lineText[i].draw(dc);

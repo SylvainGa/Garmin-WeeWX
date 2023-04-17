@@ -9,8 +9,9 @@
 	<string id="back">Appuyer sur Retour\npour sortir</string>
 
 	<!--  Main view only -->
-     <string id="MainMenuTitle">Quelle sonde ?</string>
+     <string id="MainMenuTitle">Quelle sonde?</string>
 
+	<string id="smallfontsize">Utiliser une police de caractères plus petite en mode apperçu rapide?</string>
 	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
 	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
 	<string id="OptionMenu_3_name">Nom de l'emplacement 3</string>

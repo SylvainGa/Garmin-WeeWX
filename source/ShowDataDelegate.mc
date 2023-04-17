@@ -22,13 +22,7 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 			_view._viewOffset = 12;
 		}
 
-		var i;
-		for (i = 0; i < 6; i++) {
-			if (_view._array[_view._viewOffset + i].length() > 0) {
-				break;
-			}
-		}
-		if (i == 6) {
+		if (_view._viewOffset >= _view._array.size()) {
 			//DEBUG*/ logMessage("Data at " + _view._viewOffset  + " is empty, not displaying");
 			_view._viewOffset -= 6;
 		}

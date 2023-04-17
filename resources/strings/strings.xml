@@ -12,6 +12,7 @@
 	<!--  Main view only -->
     <string id="MainMenuTitle">Which probe?</string>
 
+	<string id="smallfontsize">Use a smaller font in Glance</string>
 	<string id="OptionMenu_1_name">Slot 1 name</string>
 	<string id="OptionMenu_2_name">Slot 2 name</string>
 	<string id="OptionMenu_3_name">Slot 3 name</string>

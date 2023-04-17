@@ -29,6 +29,11 @@ One caveat, this app starts with a menu, which is not supported and because of t
 
 What's new: 
 
+V0.96.1
+New algorithm for Glance text vertical placement
+Option in Settings to choose a smaller font for Glance text. Could allow a third line of text on some watch
+Added a bunch of watches as supported
+
 V0.96.0
 Adds scrolling text in Glance view if it's too long to fit the display area
 

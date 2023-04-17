@@ -67,7 +67,7 @@ class MessageView extends WatchUi.View {
 
         if (_curPosX == null && textWidth > textMaxWidth) {
             //DEBUG*/ logMessage("DC width: " + textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex);
-            /*DEBUG*/ logMessage("Showing " + _message);
+            //DEBUG*/ logMessage("Showing " + _message);
             _curPosX = 0;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;

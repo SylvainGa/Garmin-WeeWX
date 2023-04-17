@@ -56,7 +56,9 @@ class GlanceView extends Ui.GlanceView {
         var title = "WeeWX";
         var threeLines;
 
-        if (dc.getHeight() / Graphics.getFontHeight(Graphics.FONT_TINY) >= 3.0) {
+        var font_used = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
+
+        if (dc.getHeight() / Graphics.getFontHeight(font_used) >= 3.0) {
             threeLines = true;
         }
         else {
@@ -91,9 +93,9 @@ class GlanceView extends Ui.GlanceView {
         var screenShape = System.getDeviceSettings().screenShape;
         var textMaxWidth = dc.getWidth() * (screenShape == System.SCREEN_SHAPE_RECTANGLE ? 1 : 0.84);
 
-        var text1Width = dc.getTextWidthInPixels(title, Graphics.FONT_TINY);
-        var text2Width = dc.getTextWidthInPixels(text, Graphics.FONT_TINY);
-        var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, Graphics.FONT_TINY) : 0);
+        var text1Width = dc.getTextWidthInPixels(title, font_used);
+        var text2Width = dc.getTextWidthInPixels(text, font_used);
+        var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, font_used) : 0);
 
         var biggestTextWidth = text1Width;
         var biggestTextWidthIndex = 1;
@@ -107,8 +109,8 @@ class GlanceView extends Ui.GlanceView {
         }
 
         if (_curPos1X == null || _prevText1Width != text1Width) {
-            //DEBUG*/ logMessage("DC width: " + textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex);
-            /*DEBUG*/ logMessage("Showing " + title + " | " +  text + " | " + textExtra);
+            //DEBUG*/ logMessage("DC width: " + textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex + " DC height: " + dc.getHeight() + " Font height: " + Graphics.getFontHeight(font_used));
+            //DEBUG*/ logMessage("Showing " + title + " | " +  text + " | " + textExtra);
             _curPos1X = 0;
             _prevText1Width = text1Width;
             _scrollEndTimer = 0;
@@ -178,32 +180,39 @@ class GlanceView extends Ui.GlanceView {
         // Draw the two rows of text on the glance widget
         dc.setColor(Gfx.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
-        var y = (textExtra != null && threeLines == true ? 0 : (Graphics.getFontHeight(Graphics.FONT_TINY) * 0.5).toNumber());
+        var spacing;
+        if (textExtra != null && threeLines == true) {
+            spacing = ((dc.getHeight() - Graphics.getFontHeight(font_used) * 3) / 4).toNumber();
 
+        }
+        else {
+            spacing = ((dc.getHeight() - Graphics.getFontHeight(font_used) * 2) / 3).toNumber();
+        }
+
+        var y = spacing;
         dc.drawText(
             _curPos1X,
             y,
-            Graphics.FONT_TINY,
+            font_used,
             title,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
-        y = (textExtra != null && threeLines == true ? Graphics.getFontHeight(Graphics.FONT_TINY) : (Graphics.getFontHeight(Graphics.FONT_TINY) * 1.5).toNumber());
-
+        y = (spacing * 2 + Graphics.getFontHeight(font_used)).toNumber();
         dc.drawText(
             _curPos2X,
             y,
-            Graphics.FONT_TINY,
+            font_used,
             text,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
         if (textExtra != null) {
-            y = Graphics.getFontHeight(Graphics.FONT_TINY) * 2;
+            y = (spacing * 3 + Graphics.getFontHeight(font_used) * 2).toNumber();
             dc.drawText(
                 _curPos3X,
                 y,
-                Graphics.FONT_TINY,
+                font_used,
                 textExtra,
                 Graphics.TEXT_JUSTIFY_LEFT
             );
