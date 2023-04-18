@@ -7,6 +7,10 @@
         <settingConfig type="boolean" required="true"/>
     </setting>
 
+    <setting propertyKey="@Properties.scrollclearsedge" title="@Strings.setting_scrollclearsedges">
+        <settingConfig type="boolean" required="true"/>
+    </setting>
+
 	<setting propertyKey="@Properties.option_slot1_name" title="@Strings.OptionMenu_1_name">
 		<settingConfig type="alphaNumeric" />
 	</setting>

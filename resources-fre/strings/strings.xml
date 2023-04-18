@@ -12,6 +12,7 @@
      <string id="MainMenuTitle">Quelle sonde?</string>
 
 	<string id="smallfontsize">Utiliser une police de caractères plus petite en mode apperçu rapide?</string>
+	<string id="setting_scrollclearsedges">Défilement jusqu'à ce que tout le texte est visible</string>
 	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
 	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
 	<string id="OptionMenu_3_name">Nom de l'emplacement 3</string>

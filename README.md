@@ -29,6 +29,10 @@ One caveat, this app starts with a menu, which is not supported and because of t
 
 What's new: 
 
+V0.96.2
+Optimized Glance code
+New option to scroll further so the top/bottom edge are cleared
+
 V0.96.1
 New algorithm for Glance text vertical placement
 Option in Settings to choose a smaller font for Glance text. Could allow a third line of text on some watch

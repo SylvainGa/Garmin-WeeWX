@@ -18,6 +18,11 @@ class GlanceView extends Ui.GlanceView {
     var _prevText1Width;
     var _prevText2Width;
     var _prevText3Width;
+    var _textMaxWidth;
+    var _usingFont;
+    var _fontHeight;
+    var _height;
+    var _threeLines;
 
     function initialize() {
         GlanceView.initialize();
@@ -37,6 +42,28 @@ class GlanceView extends Ui.GlanceView {
         _scrollStartTimer = 0;
         _scrollEndTimer = 0;
 	}
+
+    function onLayout(dc) {
+        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
+        _fontHeight = Graphics.getFontHeight(_usingFont);
+        _height = dc.getHeight();
+
+        if (_height / _fontHeight >= 3.0) {
+            _threeLines = true;
+        }
+        else {
+            _threeLines = false;
+        }
+
+        var screenShape = System.getDeviceSettings().screenShape;
+        _textMaxWidth = dc.getWidth();
+        if (screenShape == System.SCREEN_SHAPE_ROUND && Properties.getValue("scrollclearsedge") == true) {
+            var rad = Math.asin(_height.toFloat() * (_threeLines ? 0.8 : 1.0) / _textMaxWidth.toFloat());
+            _textMaxWidth = (Math.cos(rad) * _textMaxWidth.toFloat()).toNumber();
+        }
+
+    }
+
 	
 	function onHide() {
         if (_refreshTimer) {
@@ -54,16 +81,7 @@ class GlanceView extends Ui.GlanceView {
         var text = Storage.getValue("text");
         var textExtra;
         var title = "WeeWX";
-        var threeLines;
-
-        var font_used = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
-
-        if (dc.getHeight() / Graphics.getFontHeight(font_used) >= 3.0) {
-            threeLines = true;
-        }
-        else {
-            threeLines = false;
-        }
+        var _threeLines;
 
 		//DEBUG*/ logMessage("onUpdate: message is '" + message + "'");
 		//DEBUG*/ logMessage("onUpdate: text is '" + text + "'");
@@ -79,7 +97,7 @@ class GlanceView extends Ui.GlanceView {
                 }
                 title = array[0];
                 text = array[2];
-                if (threeLines == true && array.size() > 3) {
+                if (_threeLines == true && array.size() > 3) {
                     textExtra = array[3];
                 }
             }
@@ -90,12 +108,12 @@ class GlanceView extends Ui.GlanceView {
             text = message; // We're displaying a error
         }
 
-        var screenShape = System.getDeviceSettings().screenShape;
-        var textMaxWidth = dc.getWidth() * (screenShape == System.SCREEN_SHAPE_RECTANGLE ? 1 : 0.84);
-
-        var text1Width = dc.getTextWidthInPixels(title, font_used);
-        var text2Width = dc.getTextWidthInPixels(text, font_used);
-        var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, font_used) : 0);
+        if (text == null) {
+            text = "";
+        }
+        var text1Width = dc.getTextWidthInPixels(title, _usingFont);
+        var text2Width = dc.getTextWidthInPixels(text, _usingFont);
+        var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, _usingFont) : 0);
 
         var biggestTextWidth = text1Width;
         var biggestTextWidthIndex = 1;
@@ -109,13 +127,13 @@ class GlanceView extends Ui.GlanceView {
         }
 
         if (_curPos1X == null || _prevText1Width != text1Width) {
-            //DEBUG*/ logMessage("DC width: " + textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex + " DC height: " + dc.getHeight() + " Font height: " + Graphics.getFontHeight(font_used));
+            //DEBUG*/ logMessage("DC width: " + _textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex + " DC height: " + _height + " Font height: " + _fontHeight);
             //DEBUG*/ logMessage("Showing " + title + " | " +  text + " | " + textExtra);
             _curPos1X = 0;
             _prevText1Width = text1Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text1Width > textMaxWidth) {
+            if (text1Width > _textMaxWidth) {
                 _xDir1 = -4;
             }
             else {
@@ -127,7 +145,7 @@ class GlanceView extends Ui.GlanceView {
             _prevText2Width = text2Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text2Width > textMaxWidth) {
+            if (text2Width > _textMaxWidth) {
                 _xDir2 = -4;
             }
             else {
@@ -139,7 +157,7 @@ class GlanceView extends Ui.GlanceView {
             _prevText3Width = text3Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text3Width > textMaxWidth) {
+            if (text3Width > _textMaxWidth) {
                 _xDir3 = -4;
             }
             else {
@@ -147,25 +165,25 @@ class GlanceView extends Ui.GlanceView {
             }
         }
 
-        if (text1Width > textMaxWidth || text2Width > textMaxWidth || text3Width > textMaxWidth) {
+        if (text1Width > _textMaxWidth || text2Width > _textMaxWidth || text3Width > _textMaxWidth) {
             if (_scrollStartTimer > 20) {
                 _curPos1X = _curPos1X + _xDir1;
                 _curPos2X = _curPos2X + _xDir2;
                 _curPos3X = _curPos3X + _xDir3;
 
-                if (_curPos1X + text1Width < textMaxWidth) {
+                if (_curPos1X + text1Width < _textMaxWidth) {
                     _xDir1 = 0;
                     if (biggestTextWidthIndex == 1) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
                 }
-                if (_curPos2X + text2Width < textMaxWidth) {
+                if (_curPos2X + text2Width < _textMaxWidth) {
                     _xDir2 = 0;
                     if (biggestTextWidthIndex == 2) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
                 }
-                if (_curPos3X + text3Width < textMaxWidth) {
+                if (_curPos3X + text3Width < _textMaxWidth) {
                     if (biggestTextWidthIndex == 3) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
@@ -181,38 +199,38 @@ class GlanceView extends Ui.GlanceView {
         dc.setColor(Gfx.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
         var spacing;
-        if (textExtra != null && threeLines == true) {
-            spacing = ((dc.getHeight() - Graphics.getFontHeight(font_used) * 3) / 4).toNumber();
+        if (textExtra != null && _threeLines == true) {
+            spacing = ((_height - _fontHeight * 3) / 4).toNumber();
 
         }
         else {
-            spacing = ((dc.getHeight() - Graphics.getFontHeight(font_used) * 2) / 3).toNumber();
+            spacing = ((_height - _fontHeight * 2) / 3).toNumber();
         }
 
         var y = spacing;
         dc.drawText(
             _curPos1X,
             y,
-            font_used,
+            _usingFont,
             title,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
-        y = (spacing * 2 + Graphics.getFontHeight(font_used)).toNumber();
+        y = (spacing * 2 + _fontHeight).toNumber();
         dc.drawText(
             _curPos2X,
             y,
-            font_used,
+            _usingFont,
             text,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
         if (textExtra != null) {
-            y = (spacing * 3 + Graphics.getFontHeight(font_used) * 2).toNumber();
+            y = (spacing * 3 + _fontHeight * 2).toNumber();
             dc.drawText(
                 _curPos3X,
                 y,
-                font_used,
+                _usingFont,
                 textExtra,
                 Graphics.TEXT_JUSTIFY_LEFT
             );
