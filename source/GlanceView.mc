@@ -18,11 +18,12 @@ class GlanceView extends Ui.GlanceView {
     var _prevText1Width;
     var _prevText2Width;
     var _prevText3Width;
-    var _textMaxWidth;
     var _usingFont;
     var _fontHeight;
-    var _height;
+    var _dcWidth;
+    var _dcHeight;
     var _threeLines;
+    var _steps;
 
     function initialize() {
         GlanceView.initialize();
@@ -31,7 +32,46 @@ class GlanceView extends Ui.GlanceView {
 	function onShow() {
         _refreshTimer = new Timer.Timer();
         _refreshTimer.start(method(:refreshView), 50, true);
+        resetSavedPosition();
+	}
 
+    function onLayout(dc) {
+        gSettingsChanged = false;
+
+        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
+        _fontHeight = Graphics.getFontHeight(_usingFont);
+        _dcHeight = dc.getHeight();
+
+        if (_dcHeight / _fontHeight >= 3.0) {
+            _threeLines = true;
+        }
+        else {
+            _threeLines = false;
+        }
+
+        var screenShape = System.getDeviceSettings().screenShape;
+        _dcWidth = dc.getWidth();
+        if (screenShape == System.SCREEN_SHAPE_ROUND && Properties.getValue("scrollclearsedge") == true) {
+            var ratio = 1.0 + (System.getDeviceSettings().screenWidth < 454 ? Math.sqrt((454 - System.getDeviceSettings().screenWidth).toFloat() / 2800.0) : 0.0); // Convoluted way to adjust the width based on the screen width relative to a 454 watch, which shows ok with just the formula below 
+            var rad = Math.asin(_dcHeight.toFloat() * (_threeLines ? ratio : 1.0) / _dcWidth.toFloat());
+            _dcWidth = (Math.cos(rad) * _dcWidth.toFloat()).toNumber();
+        }
+        _steps = ((System.getDeviceSettings().screenWidth - 200).toFloat() / 50.0 + 0.5).toNumber();
+        if (_steps < 1) {
+            _steps = 1;
+        }
+
+        resetSavedPosition();
+    }
+	
+	function onHide() {
+        if (_refreshTimer) {
+            _refreshTimer.stop();
+            _refreshTimer = null;
+        }
+	}
+
+    function resetSavedPosition() {
         _curPos1X = null;
         _curPos2X = null;
         _curPos3X = null;
@@ -41,42 +81,17 @@ class GlanceView extends Ui.GlanceView {
 
         _scrollStartTimer = 0;
         _scrollEndTimer = 0;
-	}
-
-    function onLayout(dc) {
-        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
-        _fontHeight = Graphics.getFontHeight(_usingFont);
-        _height = dc.getHeight();
-
-        if (_height / _fontHeight >= 3.0) {
-            _threeLines = true;
-        }
-        else {
-            _threeLines = false;
-        }
-
-        var screenShape = System.getDeviceSettings().screenShape;
-        _textMaxWidth = dc.getWidth();
-        if (screenShape == System.SCREEN_SHAPE_ROUND && Properties.getValue("scrollclearsedge") == true) {
-            var rad = Math.asin(_height.toFloat() * (_threeLines ? 0.8 : 1.0) / _textMaxWidth.toFloat());
-            _textMaxWidth = (Math.cos(rad) * _textMaxWidth.toFloat()).toNumber();
-        }
-
     }
-
-	
-	function onHide() {
-        if (_refreshTimer) {
-            _refreshTimer.stop();
-            _refreshTimer = null;
-        }
-	}
 
 	function refreshView() {
         Ui.requestUpdate();
 	}
 
     function onUpdate(dc) {
+        if (gSettingsChanged) {
+            onLayout(dc);
+        }
+
         var message = Storage.getValue("message");
         var text = Storage.getValue("text");
         var textExtra;
@@ -115,26 +130,26 @@ class GlanceView extends Ui.GlanceView {
         var text2Width = dc.getTextWidthInPixels(text, _usingFont);
         var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, _usingFont) : 0);
 
-        var biggestTextWidth = text1Width;
-        var biggestTextWidthIndex = 1;
-        if (biggestTextWidth < text2Width) {
-            biggestTextWidth = text2Width;
-            biggestTextWidthIndex = 2;
+        var longestTextWidth = text1Width;
+        var longestTextWidthIndex = 1;
+        if (longestTextWidth < text2Width) {
+            longestTextWidth = text2Width;
+            longestTextWidthIndex = 2;
         }
-        if (biggestTextWidth < text3Width) {
-            biggestTextWidthIndex = 3;
-            biggestTextWidth = text3Width;
+        if (longestTextWidth < text3Width) {
+            longestTextWidthIndex = 3;
+            longestTextWidth = text3Width;
         }
 
         if (_curPos1X == null || _prevText1Width != text1Width) {
-            //DEBUG*/ logMessage("DC width: " + _textMaxWidth + ", text width: " + biggestTextWidth + " for line " + biggestTextWidthIndex + " DC height: " + _height + " Font height: " + _fontHeight);
+            //DEBUG*/ logMessage("DC width/height: " + _dcWidth + "/" + _dcHeight + " resetPos: " + resetPos + " longest text width: " + longestTextWidth + " for line #" + longestTextWidthIndex);
             //DEBUG*/ logMessage("Showing " + title + " | " +  text + " | " + textExtra);
             _curPos1X = 0;
             _prevText1Width = text1Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text1Width > _textMaxWidth) {
-                _xDir1 = -4;
+            if (text1Width > _dcWidth) {
+                _xDir1 = _steps;
             }
             else {
                 _xDir1 = 0;
@@ -145,8 +160,8 @@ class GlanceView extends Ui.GlanceView {
             _prevText2Width = text2Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text2Width > _textMaxWidth) {
-                _xDir2 = -4;
+            if (text2Width > _dcWidth) {
+                _xDir2 = _steps;
             }
             else {
                 _xDir2 = 0;
@@ -157,34 +172,34 @@ class GlanceView extends Ui.GlanceView {
             _prevText3Width = text3Width;
             _scrollEndTimer = 0;
             _scrollStartTimer = 0;
-            if (text3Width > _textMaxWidth) {
-                _xDir3 = -4;
+            if (text3Width > _dcWidth) {
+                _xDir3 = _steps;
             }
             else {
                 _xDir3 = 0;
             }
         }
 
-        if (text1Width > _textMaxWidth || text2Width > _textMaxWidth || text3Width > _textMaxWidth) {
+        if (text1Width > _dcWidth || text2Width > _dcWidth || text3Width > _dcWidth) {
             if (_scrollStartTimer > 20) {
-                _curPos1X = _curPos1X + _xDir1;
-                _curPos2X = _curPos2X + _xDir2;
-                _curPos3X = _curPos3X + _xDir3;
+                _curPos1X = _curPos1X - _xDir1;
+                _curPos2X = _curPos2X - _xDir2;
+                _curPos3X = _curPos3X - _xDir3;
 
-                if (_curPos1X + text1Width < _textMaxWidth) {
+                if (_curPos1X + text1Width < _dcWidth) {
                     _xDir1 = 0;
-                    if (biggestTextWidthIndex == 1) {
+                    if (longestTextWidthIndex == 1) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
                 }
-                if (_curPos2X + text2Width < _textMaxWidth) {
+                if (_curPos2X + text2Width < _dcWidth) {
                     _xDir2 = 0;
-                    if (biggestTextWidthIndex == 2) {
+                    if (longestTextWidthIndex == 2) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
                 }
-                if (_curPos3X + text3Width < _textMaxWidth) {
-                    if (biggestTextWidthIndex == 3) {
+                if (_curPos3X + text3Width < _dcWidth) {
+                    if (longestTextWidthIndex == 3) {
                         _scrollEndTimer = _scrollEndTimer + 1;              
                     }
                     _xDir3 = 0;
@@ -200,11 +215,11 @@ class GlanceView extends Ui.GlanceView {
 
         var spacing;
         if (textExtra != null && _threeLines == true) {
-            spacing = ((_height - _fontHeight * 3) / 4).toNumber();
+            spacing = ((_dcHeight - _fontHeight * 3) / 4).toNumber();
 
         }
         else {
-            spacing = ((_height - _fontHeight * 2) / 3).toNumber();
+            spacing = ((_dcHeight - _fontHeight * 2) / 3).toNumber();
         }
 
         var y = spacing;

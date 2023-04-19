@@ -9,6 +9,8 @@ using Toybox.Application.Properties;
 
 const MAX_SIZE = 18;
 
+var gSettingsChanged;
+
 (:background)
 class WeeWXApp extends Application.AppBase {
 
@@ -27,6 +29,12 @@ class WeeWXApp extends Application.AppBase {
     //! Handle app shutdown
     //! @param state Shutdown arguments
     public function onStop(state as Dictionary?) as Void {
+    }
+
+	function onSettingsChanged() {
+		//DEBUG*/ logMessage("App: Settings changed");
+        gSettingsChanged = true; // Only relevant in Glance as it will recalculate some class variables
+        WatchUi.requestUpdate();
     }
 
     //! Return the initial views for the app
