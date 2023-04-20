@@ -96,7 +96,6 @@ class GlanceView extends Ui.GlanceView {
         var text = Storage.getValue("text");
         var textExtra;
         var title = "WeeWX";
-        var _threeLines;
 
 		//DEBUG*/ logMessage("onUpdate: message is '" + message + "'");
 		//DEBUG*/ logMessage("onUpdate: text is '" + text + "'");
