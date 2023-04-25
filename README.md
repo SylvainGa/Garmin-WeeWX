@@ -29,6 +29,9 @@ One caveat, this app starts with a menu, which is not supported and because of t
 
 What's new: 
 
+V0.96.3
+Workaround for a bug that Garmin never fixed
+
 V0.96.2
 Optimized Glance code and made the scroll speed more consistent across watches screen resolution
 New option to scroll further so the top/bottom edge are cleared

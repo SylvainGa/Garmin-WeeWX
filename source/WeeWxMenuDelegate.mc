@@ -47,10 +47,10 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 		var options = {
 			:method => Communications.HTTP_REQUEST_METHOD_GET,
 			:headers => headers,
-			:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
-			:context => id
+			:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
 		}; 
 
+		Storage.setValue("Context", id.toString());
 		if (Communications has :makeWebRequest ) {
 			Communications.makeWebRequest(url, params, options, method(:onReceive));
 		}
@@ -59,9 +59,11 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 		}
     }
 
-    public function onReceive(responseCode as Number, data as Dictionary?, id) as Void {
+    public function onReceive(responseCode as Number, data as Dictionary?) as Void {
 		var message = null;
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+
+		var id = Storage.getValue("Context");
 
         if (responseCode == 200) {
 			//DEBUG*/ logMessage("data is " + data);
@@ -112,7 +114,7 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 					}
 
 					// Check if it's for our main entry, if so, update its glance with what we received
-					if (id == :Item1) {
+					if (id != null && id instanceof Lang.String && id.equals("Item1")) {
 						_formatStr = Properties.getValue("glance");
 						if (_formatStr != null) {
 							var text = Lang.format(_formatStr, fields);
