@@ -8,9 +8,19 @@ using Toybox.Application.Properties;
 
 (:background)
 class MyServiceDelegate extends System.ServiceDelegate {
+	var _formatStr;
+	var _cardinals_array;
+
     function initialize() {
         System.ServiceDelegate.initialize();
+
+		onSettingsChanged();
     }
+
+	function onSettingsChanged() {
+		_formatStr = Properties.getValue("glance");
+		_cardinals_array = to_array(Properties.getValue("directions"),",");
+	}
 
     // This fires on our temporal event - we're going to go off and get the vehicle data, only if we have a token and vehicle ID
     function onTemporalEvent() {
@@ -78,7 +88,6 @@ class MyServiceDelegate extends System.ServiceDelegate {
 	                    }
 					}
 
-					var _formatStr = Properties.getValue("glance");
 					if (_formatStr != null) {
 						text = Lang.format(_formatStr, fields);
 					}
@@ -109,8 +118,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;
-				var arr = to_array(Properties.getValue("directions"),",");
-				return(arr[(val.toNumber() % 16)]);
+				return(_cardinals_array[(val.toNumber() % 16)]);
 			}
 			else {
 				return("N/A");

@@ -3,11 +3,11 @@
 		<settingConfig type="alphaNumeric" readonly="true"/>
 	</setting>
 
-    <setting propertyKey="@Properties.smallfontsize" title="@Strings.smallfontsize">
+    <setting propertyKey="@Properties.noGlanceTitle" title="@Strings.setting_noGlanceTitle">
         <settingConfig type="boolean" required="true"/>
     </setting>
 
-    <setting propertyKey="@Properties.scrollclearsedge" title="@Strings.setting_scrollclearsedges">
+    <setting propertyKey="@Properties.smallfontsize" title="@Strings.smallfontsize">
         <settingConfig type="boolean" required="true"/>
     </setting>
 

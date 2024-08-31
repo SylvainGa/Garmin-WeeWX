@@ -13,12 +13,31 @@ var gSettingsChanged;
 
 (:background)
 class WeeWXApp extends Application.AppBase {
+	var mView;
+	var mGlance;
+	var mServiceDelegate;
 
     //! Constructor
     public function initialize() {
 		//DEBUG*/ logMessage("initialize called");
         AppBase.initialize();
     }
+
+	public function onSettingsChanged() {
+		if (mView) {
+			mView.onSettingsChanged();
+		}
+		if (mGlance) {
+			mGlance.onSettingsChanged();
+		}
+		if (mServiceDelegate) {
+			mServiceDelegate.onSettingsChanged();
+		}
+
+		//DEBUG*/ logMessage("App: Settings changed");
+        gSettingsChanged = true; // Only relevant in Glance as it will recalculate some class variables
+        WatchUi.requestUpdate();
+	}
 
     //! Handle app startup
     //! @param state Startup arguments
@@ -31,17 +50,11 @@ class WeeWXApp extends Application.AppBase {
     public function onStop(state as Dictionary?) as Void {
     }
 
-	function onSettingsChanged() {
-		//DEBUG*/ logMessage("App: Settings changed");
-        gSettingsChanged = true; // Only relevant in Glance as it will recalculate some class variables
-        WatchUi.requestUpdate();
-    }
-
     //! Return the initial views for the app
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
 		//DEBUG*/ logMessage("getInitialView called");
-    	var view = new $.WeeWXView(); 
-        return [view];
+    	var mView = new $.WeeWXView(); 
+        return [mView];
     }
 
     function getServiceDelegate(){
@@ -55,7 +68,8 @@ class WeeWXApp extends Application.AppBase {
 		//DEBUG*/ logMessage("getGlanceView called");
 
         Background.registerForTemporalEvent(new Time.Duration(60*5));
-        return [ new GlanceView() ];
+		mGlance = new GlanceView(); 
+        return [ mGlance ];
     }
 
     function onBackgroundData(data) {

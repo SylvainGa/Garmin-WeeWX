@@ -12,6 +12,7 @@
 	<!--  Main view only -->
     <string id="MainMenuTitle">Which probe?</string>
 
+	<string id="setting_noGlanceTitle">Don't show the title in Glance view</string>
 	<string id="smallfontsize">Use a smaller font in Glance</string>
 	<string id="setting_scrollclearsedges">Scroll text until the edges have cleared</string>
 	<string id="OptionMenu_1_name">Slot 1 name</string>

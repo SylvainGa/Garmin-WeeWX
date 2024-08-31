@@ -11,8 +11,12 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
     function initialize() {
 		//DEBUG*/ logMessage("WeeWXMenuDelegate initializing");
         Menu2InputDelegate.initialize();
+		onSettingsChanged();
     }
 
+	function onSettingsChanged() {
+	}
+	
     //! Handle a menu item being selected
     //! @param item Symbol identifier of the menu item that was chosen
     public function onSelect(item) {

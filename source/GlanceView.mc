@@ -24,9 +24,22 @@ class GlanceView extends Ui.GlanceView {
     var _dcHeight;
     var _threeLines;
     var _steps;
+    var _settingsChanged;
+    var _scroll;
+    var _hideTitle;
 
     function initialize() {
         GlanceView.initialize();
+
+        onSettingsChanged();
+        _settingsChanged = false;
+    }
+
+    function onSettingsChanged() {
+        _settingsChanged = true;
+        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
+        _scroll = Properties.getValue("scrollclearsedge");
+        _hideTitle = Properties.getValue("noGlanceTitle");
     }
 
 	function onShow() {
@@ -36,9 +49,8 @@ class GlanceView extends Ui.GlanceView {
 	}
 
     function onLayout(dc) {
-        gSettingsChanged = false;
+        _settingsChanged = false;
 
-        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
         _fontHeight = Graphics.getFontHeight(_usingFont);
         _dcHeight = dc.getHeight();
 
@@ -51,16 +63,16 @@ class GlanceView extends Ui.GlanceView {
 
         var screenShape = System.getDeviceSettings().screenShape;
         _dcWidth = dc.getWidth();
-        if (screenShape == System.SCREEN_SHAPE_ROUND && Properties.getValue("scrollclearsedge") == true) {
+        if (screenShape == System.SCREEN_SHAPE_ROUND && _scroll == true) {
             var ratio = 1.0 + (System.getDeviceSettings().screenWidth < 454 ? Math.sqrt((454 - System.getDeviceSettings().screenWidth).toFloat() / 2800.0) : 0.0); // Convoluted way to adjust the width based on the screen width relative to a 454 watch, which shows ok with just the formula below 
             var rad = Math.asin(_dcHeight.toFloat() * (_threeLines ? ratio : 1.0) / _dcWidth.toFloat());
             _dcWidth = (Math.cos(rad) * _dcWidth.toFloat()).toNumber();
         }
-        _steps = ((System.getDeviceSettings().screenWidth - 200).toFloat() / 50.0 + 0.5).toNumber();
+        //_steps = ((System.getDeviceSettings().screenWidth - 200).toFloat() / 50.0 + 0.5).toNumber();
+        _steps = ((System.getDeviceSettings().screenWidth).toFloat() / 100.0 + 0.5).toNumber();
         if (_steps < 1) {
             _steps = 1;
         }
-
         resetSavedPosition();
     }
 	
@@ -88,14 +100,15 @@ class GlanceView extends Ui.GlanceView {
 	}
 
     function onUpdate(dc) {
-        if (gSettingsChanged) {
+        if (_settingsChanged) {
             onLayout(dc);
         }
 
         var message = Storage.getValue("message");
         var text = Storage.getValue("text");
-        var textExtra;
-        var title = "WeeWX";
+        var line1 = "WeeWX";
+        var line2 = "";
+        var line3 = "";
 
 		//DEBUG*/ logMessage("onUpdate: message is '" + message + "'");
 		//DEBUG*/ logMessage("onUpdate: text is '" + text + "'");
@@ -109,25 +122,32 @@ class GlanceView extends Ui.GlanceView {
                         array[i] = "";
                     }
                 }
-                title = array[0];
-                text = array[2];
-                if (_threeLines == true && array.size() > 3) {
-                    textExtra = array[3];
-                }
+                line1 = array[0];
+                line2 = array[2];
+                line3 = array[3];
             }
 
             //DEBUG*/ logMessage("onUpdate: array is " + array);
         }
         else {
-            text = message; // We're displaying a error
+            line1 = message; // We're displaying a error
+            
         }
 
-        if (text == null) {
-            text = "";
+        if (line1 == null) {
+            line1 = "";
         }
-        var text1Width = dc.getTextWidthInPixels(title, _usingFont);
-        var text2Width = dc.getTextWidthInPixels(text, _usingFont);
-        var text3Width = (textExtra != null ? dc.getTextWidthInPixels(textExtra, _usingFont) : 0);
+
+        // Here we decide if we show two or three lines and if the title is shown or not
+        if (!_threeLines && _hideTitle && line3.equals("") == false) { // We shift everything
+            line1 = line2;
+            line2 = line3;
+            line3 = "";
+        }
+
+        var text1Width = dc.getTextWidthInPixels(line1, _usingFont);
+        var text2Width = dc.getTextWidthInPixels(line2, _usingFont);
+        var text3Width = dc.getTextWidthInPixels(line3, _usingFont);
 
         var longestTextWidth = text1Width;
         var longestTextWidthIndex = 1;
@@ -213,11 +233,12 @@ class GlanceView extends Ui.GlanceView {
         dc.setColor(Gfx.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
         var spacing;
-        if (textExtra != null && _threeLines == true) {
+        if (line3.equals("") == false && _threeLines == true) {
             spacing = ((_dcHeight - _fontHeight * 3) / 4).toNumber();
 
         }
         else {
+            line3 = null;
             spacing = ((_dcHeight - _fontHeight * 2) / 3).toNumber();
         }
 
@@ -226,7 +247,7 @@ class GlanceView extends Ui.GlanceView {
             _curPos1X,
             y,
             _usingFont,
-            title,
+            line1,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
@@ -235,17 +256,17 @@ class GlanceView extends Ui.GlanceView {
             _curPos2X,
             y,
             _usingFont,
-            text,
+            line2,
             Graphics.TEXT_JUSTIFY_LEFT
         );
 
-        if (textExtra != null) {
+        if (line3 != null) {
             y = (spacing * 3 + _fontHeight * 2).toNumber();
             dc.drawText(
                 _curPos3X,
                 y,
                 _usingFont,
-                textExtra,
+                line3,
                 Graphics.TEXT_JUSTIFY_LEFT
             );
         }
