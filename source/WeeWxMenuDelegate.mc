@@ -150,7 +150,7 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
     	if (name.equals("windDir")) {
     		if (value.toNumber() instanceof Lang.Number) {
 				var val = (value.toFloat() / 22.5) + .5;
-				var arr = to_array(Properties.getValue("directions"),",");
+				var arr = to_array(Properties.getValue("directions"),",", MAX_SIZE);
 				return(arr[(val.toNumber() % 16)]);
 			}
 			else {

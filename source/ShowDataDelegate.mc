@@ -40,10 +40,11 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 	}
 
     function onSwipe(swipeEvent) {
-    	if (swipeEvent.getDirection() == 3) {
-			Ui.popView(Ui.SLIDE_IMMEDIATE);
-	        return true;
-	    }
+    	if (swipeEvent.getDirection() == 3) { // Want to see the grapth
+			var thisMenu = new graphView();
+			var thisDelegate = new graphDelegate();
+			WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_IMMEDIATE);
+	    }	
 	    else if (swipeEvent.getDirection() == 2) { // Up we go!
 	    	_view._viewOffset -= 6;
 	    	if (_view._viewOffset < 0) {

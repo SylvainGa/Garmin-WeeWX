@@ -77,6 +77,11 @@ class WeeWXApp extends Application.AppBase {
         if (data != null && data instanceof Dictionary) {
 			Storage.setValue("message", data.get("message"));
 			Storage.setValue("text", data.get("text"));
+			Storage.setValue("history", data.get("history"));
+			Storage.setValue("timestamp", data.get("timestamp"));
+
+			/*DEBUG*/ logMessage("onBackgroundData - history: " + data.get("history"));
+			/*DEBUG*/ logMessage("onBackgroundData - timestamp: " + data.get("timestamp"));
         }
 		else {
 			//DEBUG*/ logMessage("onBackgroundData data not a dictionary: " + data);
@@ -90,8 +95,8 @@ class WeeWXApp extends Application.AppBase {
 }
 
 (:background)
-function to_array(string, splitter) {
-	var array = new [MAX_SIZE]; //Use maximum expected length
+function to_array(string, splitter, max_size) {
+	var array = new [max_size]; //Use maximum expected length
 	var index = 0;
 	var location;
 
@@ -102,7 +107,7 @@ function to_array(string, splitter) {
 			string = string.substring(location + 1, string.length());
 			index++;
 		}
-	} while (location != null && index < MAX_SIZE);
+	} while (location != null && index < max_size);
 
 	array[index] = string;
 	

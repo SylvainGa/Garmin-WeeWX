@@ -114,7 +114,7 @@ class GlanceView extends Ui.GlanceView {
 		//DEBUG*/ logMessage("onUpdate: text is '" + text + "'");
 
         if (text != null) {
-            var array = to_array(text,"|");
+            var array = to_array(text, "|", MAX_SIZE);
             //DEBUG*/ logMessage("onUpdate: array size is " + array.size());
             if (array.size() > 0) {
                 for (var i = 0; i < array.size(); i++) {
