@@ -114,7 +114,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
 								if (fields_name[i].equals("outTemp")) {
 									// Get what we had before and convert the ';' separated string of values to an array
 									if (_history_str != null /*&& _timestamp_str != null*/) {
-										var max_size = 285; //Properties.getValue("History_size");
+										var max_size = 288; //Properties.getValue("History_size");
 										var history = to_array(_history_str,";", max_size);
 										//var timestamp = to_array(_timestamp_str,";", max_size);
 

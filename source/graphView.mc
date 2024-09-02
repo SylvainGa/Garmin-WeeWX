@@ -45,6 +45,8 @@ class graphView extends WatchUi.View {
 			var history = to_array(history_str,";", max_size);
 			//var timestamp = to_array(timestamp_str,";", max_size);
 
+			/*DEBUG*/ history = [ "20.3","20.2","20.1","20.0","20.0","19.6","19.4","19.2","19.0","18.9","18.9","18.9","18.9","18.8","18.8","18.9","19.0","19.0","18.9","null","18.7","18.5","18.4","18.3","null","null","null","null","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.2","18.1","18.1","18.1","18.0","18.0","18.0","17.9","17.9","17.9","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","18.0","18.0","18.0","18.1","18.1","18.2","18.2","18.3","18.3","18.4","18.4","18.5","18.5","18.5","18.6","18.7","18.7","18.8","18.8","18.8","18.8","18.8","18.9","18.9","18.9","18.9","18.9","18.9","18.9","18.9","19.0","19.0","19.0","19.0","19.1","19.1","19.1" ];
+
 			var history_size = history.size();
 			//var timestamp_size = timestamp.size();
 			var array_size = history_size; //(history_size < timestamp_size ? history_size : timestamp_size );
@@ -54,12 +56,14 @@ class graphView extends WatchUi.View {
 			var high;
 			var low;
 			for (index = 0; index < array_size; index++) {
-				var value;
-				try {
-					value = history[index].toFloat();
-				}
-				catch (e) {
-					value = null;
+				var value = history[index];
+				if (value != null) {
+					try {
+						value = value.toFloat();
+					}
+					catch (e) {
+						value = null;
+					}
 				}
 
 				if (value != null) {
@@ -69,6 +73,9 @@ class graphView extends WatchUi.View {
 					if (low == null || low > value) {
 						low = value;
 					}
+				}
+				else {
+					/*DEBUG*/ logMessage("index " + index + " is null");
 				}
 
 				history[index] = value; // SO we don't need to convert again when plotting
@@ -142,22 +149,28 @@ class graphView extends WatchUi.View {
 				for (index = 0; index < array_size; index++) { // We start at one so we can draw from a previous point
 					var valuePos = index * width / 288; // 24 hours * 60 minutes / 5 minutes between samples = 288 samples in 24 hours
 					var value = history[index];
+					var yValue;
 
 					if (value != null) { // Only we if got real value from the array
-						var yValue = xPos - ((value * drawableHeight) / yRange);
+						yValue = xPos - ((value * drawableHeight) / yRange);
 
 						if (prevValue == null) {
 							prevValue = value;
+							dc.drawPoint(valuePos, yValue);
 						}
 						else {
 							if (prevPos != valuePos || prevValue != yValue) {
 								dc.drawLine(prevPos, prevValue, valuePos, yValue);
 
-								prevValue = yValue;
-								prevPos = valuePos;
 							}
 						}
 					}
+					else {
+						yValue = null;
+					}
+
+					prevPos = valuePos;
+					prevValue = yValue;
 				}
 				return;
 			}

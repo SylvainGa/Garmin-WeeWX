@@ -41,9 +41,7 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
 
     function onSwipe(swipeEvent) {
     	if (swipeEvent.getDirection() == 3) { // Want to see the grapth
-			var thisMenu = new graphView();
-			var thisDelegate = new graphDelegate();
-			WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_IMMEDIATE);
+			onSelect();
 	    }	
 	    else if (swipeEvent.getDirection() == 2) { // Up we go!
 	    	_view._viewOffset -= 6;
@@ -72,6 +70,13 @@ class ShowDataDelegate extends Ui.BehaviorDelegate {
         return true;
 	}
 	
+    function onSelect() {
+		var thisMenu = new graphView();
+		var thisDelegate = new graphDelegate();
+		WatchUi.pushView(thisMenu, thisDelegate, WatchUi.SLIDE_IMMEDIATE);
+        return true;
+    }
+
     function onBack() {
 		Ui.popView(Ui.SLIDE_IMMEDIATE);
         return true;
