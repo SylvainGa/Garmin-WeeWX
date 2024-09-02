@@ -71,6 +71,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
     public function onReceive(responseCode, data) as Void {
 		var message = null;
 		var text = null;
+		var graphValue = "null";
 
 		if (responseCode == 200) {
 			//DEBUG*/ logMessage("BG onReceive: responseCode is " + responseCode);
@@ -79,12 +80,12 @@ class MyServiceDelegate extends System.ServiceDelegate {
 	            message = data;
 	        } else if (data instanceof Dictionary) { // Dictionary is the answer from the web request call
 				var current = data["current"];
-				var current_time = 	data["time"];
-				if (current_time == null) {
-					var now = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
-					// 30/08/24 22:35:00
-					current_time = now.day.format("%02d") + "/" + now.month.format("%02d") + "/" + (now.year - 2000).format("%02d") + " " + now.hour.format("%02d") + ":" + now.min.format("%02d") + ":" + now.sec.format("%02d");
-				}
+				// var current_time = 	data["time"];
+				// if (current_time == null) {
+				// 	var now = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+				// 	// 30/08/24 22:35:00
+				// 	current_time = now.day.format("%02d") + "/" + now.month.format("%02d") + "/" + (now.year - 2000).format("%02d") + " " + now.hour.format("%02d") + ":" + now.min.format("%02d") + ":" + now.sec.format("%02d");
+				// }
 
 				if (current instanceof Dictionary) {
 					// Calculate how many fields of data we have
@@ -112,34 +113,7 @@ class MyServiceDelegate extends System.ServiceDelegate {
 
 								// If it's the field we take a history of
 								if (fields_name[i].equals("outTemp")) {
-									// Get what we had before and convert the ';' separated string of values to an array
-									if (_history_str != null /*&& _timestamp_str != null*/) {
-										var max_size = 288; //Properties.getValue("History_size");
-										var history = to_array(_history_str,";", max_size);
-										//var timestamp = to_array(_timestamp_str,";", max_size);
-
-										var history_size = history.size();
-										//var timestamp_size = timestamp.size();
-
-										// Make sure we act on the smallest array if for some reason they are not the same size
-										var array_size = history_size; //(history_size < timestamp_size ? history_size : timestamp_size );
-
-										// If we reached our maximum size, we need to skip the oldest one before converting it back into a string
-										var j = (array_size < max_size ? 0 : 1);
-										
-										var delimiter = "";
-										for (_history_str = ""/*, _timestamp_str = ""*/; j < array_size; j++) {
-											_history_str += delimiter + history[j];
-											//_timestamp_str += delimiter + timestamp[j];
-											delimiter = ";";
-										}
-										_history_str += delimiter + fields[i];
-										//_timestamp_str += delimiter + current_time;
-									}
-									else {
-										_history_str = fields[i];
-										//_timestamp_str = current_time;
-									}
+									graphValue = fields[i];
 								}
 							}
 	                    }
@@ -165,9 +139,107 @@ class MyServiceDelegate extends System.ServiceDelegate {
             message = App.loadResource(Rez.Strings.FailedToRead) + responseCode.toString() + " " + errorStr;
         }
 
-		//DEBUG*/ logMessage("BG onReceive: message is '" + message + "'");
-		//DEBUG*/ logMessage("BG onReceive: text  is '" + text + "'");
-        Background.exit({"text" => text, "message" => message, "history" => _history_str/*, "timestamp" => _timestamp_str*/});
+		// See if it's time to add to the graph history
+		var sampleInterval;
+		try {
+			sampleInterval = Properties.getValue("sampleInterval");
+		}
+		catch (e) {
+			sampleInterval = 1;
+		}
+
+		if (sampleInterval == null) {
+			sampleInterval = 1;
+		}
+		
+		var currentInterval = Storage.getValue("sampleIntervalCount");
+		if (currentInterval == null) {
+			currentInterval = 0;
+		}
+
+		currentInterval++;
+		if (currentInterval == sampleInterval) {
+			currentInterval = 0;
+			//DEBUG*/ _history_str = "12.1;12.2;12.3;12.4;12.5";
+			// It's time, add the value to the graph history
+			if (_history_str != null && _history_str.equals("") == false /* && _timestamp_str != null && _timestamp_str.equals("") == false */) {
+				var max_size;
+				try {
+					max_size = Properties.getValue("historySize");
+				}
+				catch (e) {
+					max_size = 288;
+				}
+
+				if (max_size == null) {
+					max_size = 288;
+				}
+
+				var lenght = _history_str.length();
+				var index =  lenght - 1;
+				var array = _history_str.toCharArray();
+				var count = 1; // If we're here, we have at least one data, so start at one
+
+				do { 
+					if (array[index] == ';') {
+						count++;
+
+						if (count == max_size) { // If we have more that than was is now being requested, stop there.
+							break;
+						}
+					}
+					index--;
+
+					// If we reached the end
+				} while (index >= 0);
+
+				// If we have all the data we need, drop the first one
+				if (count == max_size) {
+					_history_str = _history_str.substring(index + 1, lenght);
+				}
+
+				// Now add our data to the history
+				_history_str += ";" + graphValue;
+				
+				// Old method using an array. Too CPU intensive
+				// // Get what we had before and convert the ';' separated string of values to an array
+				// var history = to_array(_history_str,";", max_size);
+				// //var timestamp = to_array(_timestamp_str,";", max_size);
+
+				// var history_size = history.size();
+				// //var timestamp_size = timestamp.size();
+
+				// // Make sure we act on the smallest array if for some reason they are not the same size
+				// var array_size = history_size; //(history_size < timestamp_size ? history_size : timestamp_size );
+
+				// // If we reached our maximum size, we need to skip the oldest one before converting it back into a string
+				// var j = (array_size < max_size ? 0 : 1);
+				
+				// var delimiter = "";
+				// for (_history_str = ""/*, _timestamp_str = ""*/; j < array_size; j++) {
+				// 	_history_str += delimiter + history[j];
+				// 	//_timestamp_str += delimiter + timestamp[j];
+				// 	delimiter = ";";
+				// }
+				// _history_str += delimiter + fields[i];
+				// //_timestamp_str += delimiter + current_time;
+
+			}
+			else {
+				_history_str = graphValue;
+				//_timestamp_str = current_time;
+			}
+			//DEBUG*/ logMessage("BG onReceive: message is '" + message + "'");
+			//DEBUG*/ logMessage("BG onReceive: text  is '" + text + "'");
+			Background.exit({"text" => text, "message" => message, "history" => _history_str/*, "timestamp" => _timestamp_str*/});
+		}
+		else { // We're skipping this data read for our graph history
+			//DEBUG*/ logMessage("BG onReceive: message is '" + message + "'");
+			//DEBUG*/ logMessage("BG onReceive: text  is '" + text + "'");
+			Background.exit({"text" => text, "message" => message});
+		}
+
+		Storage.setValue("sampleIntervalCount", currentInterval);
     }
 
     function convert(value, name) {

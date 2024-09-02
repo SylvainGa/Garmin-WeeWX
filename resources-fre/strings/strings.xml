@@ -6,14 +6,19 @@
     <string id="NoCurrentValue" scope="background">Incapable de lire la\ntempérature courante</string>
     <string id="FailedToRead" scope="background">Incapable de lire. Erreur: </string>
     <string id="BadFormat" scope="background">vérifier votre config.\nIl y a erreur.</string>
+	<string id="noData">Aucune donnée à afficher</string>
 	<string id="back">Appuyer sur Retour\npour sortir</string>
 
 	<!--  Main view only -->
      <string id="MainMenuTitle">Quelle sonde?</string>
 
-	<string id="setting_noGlanceTitle">Ne pas montrer le titre lors de l'apeprçu"</string>
+	<!--  In Settings only -->
+	<string id="noGlanceTitle">Ne pas montrer le titre lors de l'apeprçu"</string>
 	<string id="smallfontsize">Utiliser une police de caractères plus petite en mode apperçu rapide?</string>
-	<string id="setting_scrollclearsedges">Défilement jusqu'à ce que tout le texte est visible</string>
+	<string id="historySize">Nombre de point de données pour le graphique</string>
+	<string id="sampleInterval">Interval entre la capture des points de données</string>
+	<string id="historySize_prompt">288 est 24h à un interval de 5 minutes</string>
+	<string id="sampleInterval_prompt">Chaque interval est 5 minutes, 2 est un interval de 10 minutes</string>
 	<string id="OptionMenu_1_name">Nom de l'emplacement 1</string>
 	<string id="OptionMenu_2_name">Nom de l'emplacement 2</string>
 	<string id="OptionMenu_3_name">Nom de l'emplacement 3</string>

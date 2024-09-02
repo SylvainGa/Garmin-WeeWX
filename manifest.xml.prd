@@ -82,9 +82,6 @@
             <iq:product id="marqdriver"/>
             <iq:product id="marqexpedition"/>
             <iq:product id="marqgolfer"/>
-            <iq:product id="montana7xx"/>
-            <iq:product id="oregon7xx"/>
-            <iq:product id="rino7xx"/>
             <iq:product id="venu"/>
             <iq:product id="venu2"/>
             <iq:product id="venu2plus"/>

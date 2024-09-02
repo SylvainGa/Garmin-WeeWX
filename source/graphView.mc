@@ -41,7 +41,17 @@ class graphView extends WatchUi.View {
 		var history_str = Storage.getValue("history");
 		//var timestamp_str = Storage.getValue("timestamp");
 		if (history_str != null /*&& timestamp_str != null*/) {
-			var max_size = 288; //Properties.getValue("History_size");
+			var max_size;
+			try {
+				max_size = Properties.getValue("historySize");
+			}
+			catch (e) {
+				max_size = 288;  // 24 hours * 60 minutes / 5 minutes between samples = 288 samples in 24 hours
+			}
+
+			if (max_size == null) {
+				max_size = 288;
+			}
 			var history = to_array(history_str,";", max_size);
 			//var timestamp = to_array(timestamp_str,";", max_size);
 
@@ -127,7 +137,7 @@ class graphView extends WatchUi.View {
 						var yValue = xPos - ((index * drawableHeight) / yRange);
 						dc.drawLine(width / 2 - (index % 10 == 0 ? 10 : 5), yValue, width / 2 + (index % 10 == 0 ? 10 : 5), yValue);
 						if (index % 2 == 0 && index != 0) {
-							dc.drawText(width / 2 - 15, yValue, Gfx.FONT_TINY, index.toString(), Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER); // TODO Change text to 'No data to show'
+							dc.drawText(width / 2 - 15, yValue, Gfx.FONT_TINY, index.toString(), Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
 						}
 					}
 				}
@@ -136,7 +146,7 @@ class graphView extends WatchUi.View {
 						var yValue = xPos - (((index * drawableHeight) / yRange));
 						dc.drawLine(width / 2 - (index % 10 == 0 ? 10 : 5), yValue, width / 2 + (index % 10 == 0 ? 10 : 5), yValue);
 						if (index % 2 == 0 && index != 0) {
-							dc.drawText(width / 2 - 15, yValue, Gfx.FONT_TINY, index.toString(), Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER); // TODO Change text to 'No data to show'
+							dc.drawText(width / 2 - 15, yValue, Gfx.FONT_TINY, index.toString(), Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
 						}
 					}
 				}
@@ -147,7 +157,7 @@ class graphView extends WatchUi.View {
 				var prevValue; // Last known value we got so we know from where to start our line
 				var prevPos = 0;
 				for (index = 0; index < array_size; index++) { // We start at one so we can draw from a previous point
-					var valuePos = index * width / 288; // 24 hours * 60 minutes / 5 minutes between samples = 288 samples in 24 hours
+					var valuePos = index * width / max_size;
 					var value = history[index];
 					var yValue;
 
@@ -180,6 +190,6 @@ class graphView extends WatchUi.View {
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
 		dc.clear();
 		dc.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
-		dc.drawText(width / 2, height / 2, Gfx.FONT_SMALL, WatchUi.loadResource(Rez.Strings.back), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER); // TODO Change text to 'No data to show'
+		dc.drawText(width / 2, height / 2, Gfx.FONT_SMALL, WatchUi.loadResource(Rez.Strings.noData), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER); // TODO Change text to 'No data to show'
 	}
 }

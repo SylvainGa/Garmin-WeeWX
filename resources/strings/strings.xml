@@ -1,20 +1,26 @@
 <strings>
     <string id="AppName">WeeWX</string>
-    <string id="AppNameVersion">WeeWX V0.97.0b4</string>
+    <string id="AppNameVersion">WeeWX V0.97.0b6</string>
 
 	<!--  GLANCE and MANIN view -->
     <string id="Awaiting_response" scope="background">Awaiting response</string>
     <string id="NoCurrentValue" scope="background">Unable to read current values</string>
     <string id="FailedToRead" scope="background">Failed to read. Error: </string>
     <string id="BadFormat" scope="background">Check your configuration\nSomething is wrong</string>
+	<string id="noData">No data to show</string>
 	<string id="back">Hit Back to Exit</string>
 
 	<!--  Main view only -->
     <string id="MainMenuTitle">Which probe?</string>
 
-	<string id="setting_noGlanceTitle">Don't show the title in Glance view</string>
+
+	<!--  In Settings only -->
+	<string id="noGlanceTitle">Don't show the title in Glance view</string>
 	<string id="smallfontsize">Use a smaller font in Glance</string>
-	<string id="setting_scrollclearsedges">Scroll text until the edges have cleared</string>
+	<string id="historySize">Graph datapoints size</string>
+	<string id="sampleInterval">Graph data intervals</string>
+	<string id="historySize_prompt">288 is 24h at 5 minutes interval</string>
+	<string id="sampleInterval_prompt">Each interval is 5 minutes, 2 means 10 minutes intervals</string>
 	<string id="OptionMenu_1_name">Slot 1 name</string>
 	<string id="OptionMenu_2_name">Slot 2 name</string>
 	<string id="OptionMenu_3_name">Slot 3 name</string>

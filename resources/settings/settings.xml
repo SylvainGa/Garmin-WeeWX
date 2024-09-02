@@ -3,13 +3,21 @@
 		<settingConfig type="alphaNumeric" readonly="true"/>
 	</setting>
 
-    <setting propertyKey="@Properties.noGlanceTitle" title="@Strings.setting_noGlanceTitle">
+    <setting propertyKey="@Properties.noGlanceTitle" title="@Strings.noGlanceTitle">
         <settingConfig type="boolean" required="true"/>
     </setting>
 
     <setting propertyKey="@Properties.smallfontsize" title="@Strings.smallfontsize">
         <settingConfig type="boolean" required="true"/>
     </setting>
+
+    <setting propertyKey="@Properties.historySize" title="@Strings.historySize" prompt="@Strings.historySize_prompt">
+		<settingConfig type="numeric" min="2" max="1000" required="true"/>
+	</setting>
+
+    <setting propertyKey="@Properties.sampleInterval" title="@Strings.sampleInterval" prompt="@Strings.sampleInterval_prompt">
+		<settingConfig type="numeric" min="1" max="10" required="true"/>
+	</setting>
 
 	<setting propertyKey="@Properties.option_slot1_name" title="@Strings.OptionMenu_1_name">
 		<settingConfig type="alphaNumeric" />
