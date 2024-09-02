@@ -3,6 +3,8 @@
 	<property id="noGlanceTitle" type="boolean">false</property>
 	<property id="smallfontsize" type="boolean">false</property>
 	<property id="scrollclearsedge" type="boolean">true</property>
+	<property id="historySize" type="number">288</property>
+	<property id="sampleInterval" type="number">1</property>
 	<property id="option_slot1_url" type="string">https://weewx.maison.duckdns.org/daily.json</property>
 	<property id="option_slot2_url" type="string">https://weewx.chalet.duckdns.org/daily.json</property>
 	<property id="option_slot3_url" type="string"></property>
