@@ -3,6 +3,7 @@
 <iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="1">
     <iq:application entry="WeeWXApp" id="9cf46f4c-1d4c-40c7-af93-13c2826fd971" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="2.4.0" name="@Strings.AppName" type="widget">
         <iq:products>
+            <iq:product id="enduro3"/>
             <iq:product id="fenix7spro"/>
             <iq:product id="fr965"/>
             <iq:product id="venusq"/>

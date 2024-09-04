@@ -156,8 +156,9 @@ class graphView extends WatchUi.View {
 				// Now plot the data
 				var prevValue; // Last known value we got so we know from where to start our line
 				var prevPos = 0;
+				var startPos = max_size - array_size;
 				for (index = 0; index < array_size; index++) { // We start at one so we can draw from a previous point
-					var valuePos = index * width / max_size;
+					var valuePos = (index + startPos) * width / max_size;
 					var value = history[index];
 					var yValue;
 
