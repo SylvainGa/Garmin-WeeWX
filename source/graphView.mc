@@ -87,7 +87,7 @@ class graphView extends WatchUi.View {
 					}
 				}
 				else {
-					/*DEBUG*/ logMessage("index " + index + " is null");
+					//DEBUG*/ logMessage("index " + index + " is null");
 				}
 
 				history[index] = value; // SO we don't need to convert again when plotting

@@ -22,14 +22,14 @@ class MyServiceDelegate extends System.ServiceDelegate {
 			_history_str = data.get("history");
 			//_timestamp_str = data.get("timestamp");
 
-			/*DEBUG*/ logMessage("BG initialize from data - history: " + _history_str);
+			//DEBUG*/ logMessage("BG initialize from data - history: " + _history_str);
 			//DEBUG*/ logMessage("BG initialize from data - timestamp: " + _timestamp_str);
 		}
 		else {
 			_history_str = Storage.getValue("history");
 			//_timestamp_str = Storage.getValue("timestamp");
 
-			/*DEBUG*/ logMessage("BG initialize from Storage - history: " + _history_str);
+			//DEBUG*/ logMessage("BG initialize from Storage - history: " + _history_str);
 			//DEBUG*/ logMessage("BG initialize from Storage - timestamp: " + _timestamp_str);
 		}
 
