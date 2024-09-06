@@ -14,6 +14,7 @@ N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 using Toybox.Lang;
+using Toybox.Math;
 using Toybox.WatchUi;
 using Toybox.Application.Storage;
 using Toybox.Application.Properties;
@@ -55,7 +56,7 @@ class graphView extends WatchUi.View {
 			var history = to_array(history_str,";", max_size);
 			//var timestamp = to_array(timestamp_str,";", max_size);
 
-			//DEBUG*/ history = [ "20.3","20.2","20.1","20.0","20.0","19.6","19.4","19.2","19.0","18.9","18.9","18.9","18.9","18.8","18.8","18.9","19.0","19.0","18.9","null","18.7","18.5","18.4","18.3","null","null","null","null","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.2","18.1","18.1","18.1","18.0","18.0","18.0","17.9","17.9","17.9","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","18.0","18.0","18.0","18.1","18.1","18.2","18.2","18.3","18.3","18.4","18.4","18.5","18.5","18.5","18.6","18.7","18.7","18.8","18.8","18.8","18.8","18.8","18.9","18.9","18.9","18.9","18.9","18.9","18.9","18.9","19.0","19.0","19.0","19.0","19.1","19.1","19.1" ];
+			//DEBUG*/ history = [ "-10.0","20.3","20.2","20.1","20.0","20.0","19.6","19.4","19.2","19.0","18.9","18.9","18.9","18.9","18.8","18.8","18.9","19.0","19.0","18.9","null","18.7","18.5","18.4","18.3","null","null","null","null","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.2","18.1","18.1","18.1","18.0","18.0","18.0","17.9","17.9","17.9","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","18.0","18.0","18.0","18.1","18.1","18.2","18.2","18.3","18.3","18.4","18.4","18.5","18.5","18.5","18.6","18.7","18.7","18.8","18.8","18.8","18.8","18.8","18.9","18.9","18.9","18.9","18.9","18.9","18.9","18.9","19.0","19.0","19.0","19.0","19.1","19.3","19.7","20.2","20.6","20.6","24.5","24.5","28.0","28.0","-14.0" ];
 
 			var history_size = history.size();
 			//var timestamp_size = timestamp.size();
@@ -65,6 +66,7 @@ class graphView extends WatchUi.View {
 			var index;
 			var high;
 			var low;
+
 			for (index = 0; index < array_size; index++) {
 				var value = history[index];
 				if (value != null) {
@@ -91,6 +93,8 @@ class graphView extends WatchUi.View {
 				history[index] = value; // SO we don't need to convert again when plotting
 			}
 
+			var last = history[array_size - 1];
+
 			// Now draw those scales
 			if (high != null && low != null) {
 				// low = -12.0;
@@ -105,7 +109,8 @@ class graphView extends WatchUi.View {
 				var xPos;
 				var highTop;
 				var lowBottom;
-				var shapeOffset = (Sys.getDeviceSettings().screenShape == Sys.SCREEN_SHAPE_RECTANGLE ? height / 20 : height / 10);
+				var shapeRectangle = (Sys.getDeviceSettings().screenShape == Sys.SCREEN_SHAPE_RECTANGLE);
+				var shapeOffset = (shapeRectangle ? height / 20 : height / 10);
 				var drawableHeight = (height - (shapeOffset * 2));
 
 				highTop = ((high + 5.0) / 5.0).toNumber() * 5.0;
@@ -124,6 +129,14 @@ class graphView extends WatchUi.View {
 				else {
 					xPos = height - shapeOffset; // All data is above 0C
 					yRange = highTop; // Our range is from 0 to high
+				}
+
+				// See if we should adjust the X scale to account for a round screen clipping off the latest values because they are near the top or bottom scale (only for round type watch)
+				var widthAdj = 1.0;
+				if (!shapeRectangle) {
+					var yValue = (xPos - ((last * drawableHeight) / yRange) - height / 2).abs();
+					var xValue = Math.sqrt((width / 2) * (width / 2) - yValue * yValue);
+					widthAdj = (width / 2 + xValue) / width;
 				}
 
 				// Draw X axis
@@ -158,7 +171,7 @@ class graphView extends WatchUi.View {
 				var prevPos = 0;
 				var startPos = max_size - array_size;
 				for (index = 0; index < array_size; index++) { // We start at one so we can draw from a previous point
-					var valuePos = (index + startPos) * width / max_size;
+					var valuePos = (index + startPos) * width * widthAdj / max_size;
 					var value = history[index];
 					var yValue;
 

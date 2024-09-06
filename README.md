@@ -29,6 +29,11 @@ One caveat, this app starts with a menu, which is not supported and because of t
 
 What's new: 
 
+V0.97.0
+Compiled with CIQ 7.3.0
+Added Enduro 3 and Fenix 8 watches, including the Fenix E
+Added a graphic for the outside temperature. Accessed by sliding to the left or pressing the Select button. The interval (by increment of 5 minutes) and the number of data points can be adjusted through the App Settings (max of 2016 or 7 days at interval of 5 minutes). By default, shows the last 24 hours (288 data points) but it must first accunulate those datapoints. A skip in the data is because the background ran but it couldn't get any data. It will NOT account for the time the watch is turned OFF.
+
 V0.96.3
 Workaround for a bug that Garmin never fixed
 

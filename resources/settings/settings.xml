@@ -12,7 +12,7 @@
     </setting>
 
     <setting propertyKey="@Properties.historySize" title="@Strings.historySize" prompt="@Strings.historySize_prompt">
-		<settingConfig type="numeric" min="2" max="1000" required="true"/>
+		<settingConfig type="numeric" min="2" max="2016" required="true"/>
 	</setting>
 
     <setting propertyKey="@Properties.sampleInterval" title="@Strings.sampleInterval" prompt="@Strings.sampleInterval_prompt">

@@ -78,10 +78,10 @@ class WeeWXApp extends Application.AppBase {
 			Storage.setValue("message", data.get("message"));
 			Storage.setValue("text", data.get("text"));
 			Storage.setValue("history", data.get("history"));
-			Storage.setValue("timestamp", data.get("timestamp"));
+			//Storage.setValue("timestamp", data.get("timestamp"));
 
-			/*DEBUG*/ logMessage("onBackgroundData - history: " + data.get("history"));
-			/*DEBUG*/ logMessage("onBackgroundData - timestamp: " + data.get("timestamp"));
+			//DEBUG*/ logMessage("onBackgroundData - history: " + data.get("history"));
+			//DEBUG*/ logMessage("onBackgroundData - timestamp: " + data.get("timestamp"));
         }
 		else {
 			//DEBUG*/ logMessage("onBackgroundData data not a dictionary: " + data);
