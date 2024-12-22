@@ -40,8 +40,7 @@ class graphView extends WatchUi.View {
 
 		// Read the data into an array
 		var history_str = Storage.getValue("history");
-		//var timestamp_str = Storage.getValue("timestamp");
-		if (history_str != null /*&& timestamp_str != null*/) {
+		if (history_str != null) {
 			var max_size;
 			try {
 				max_size = Properties.getValue("historySize");
@@ -54,25 +53,22 @@ class graphView extends WatchUi.View {
 				max_size = 288;
 			}
 			var history = to_array(history_str,";", max_size);
-			//var timestamp = to_array(timestamp_str,";", max_size);
 
 			//DEBUG*/ history = [ "-10.0","20.3","20.2","20.1","20.0","20.0","19.6","19.4","19.2","19.0","18.9","18.9","18.9","18.9","18.8","18.8","18.9","19.0","19.0","18.9","null","18.7","18.5","18.4","18.3","null","null","null","null","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.3","18.2","18.1","18.1","18.1","18.0","18.0","18.0","17.9","17.9","17.9","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.8","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","17.9","18.0","18.0","18.0","18.1","18.1","18.2","18.2","18.3","18.3","18.4","18.4","18.5","18.5","18.5","18.6","18.7","18.7","18.8","18.8","18.8","18.8","18.8","18.9","18.9","18.9","18.9","18.9","18.9","18.9","18.9","19.0","19.0","19.0","19.0","19.1","19.3","19.7","20.2","20.6","20.6","24.5","24.5","28.0","28.0","-14.0" ];
-			var i;
+			/*DEBUG var i;
 			history = new [288];
 			max_size = 288;
 			for (i = 0; i < 288; i++) {
 				history[i] = (Math.sin(i.toFloat() / 144.0 * Math.PI) * 6.0 + 18.0).toString();
-			}
+			}*/
 			var history_size = history.size();
-			//var timestamp_size = timestamp.size();
-			var array_size = history_size; //(history_size < timestamp_size ? history_size : timestamp_size );
 
 			// The the highest and lowest value so we can build our Y scale
 			var index;
 			var high;
 			var low;
 
-			for (index = 0; index < array_size; index++) {
+			for (index = 0; index < history_size; index++) {
 				var value = history[index];
 				if (value != null) {
 					try {
@@ -98,7 +94,7 @@ class graphView extends WatchUi.View {
 				history[index] = value; // SO we don't need to convert again when plotting
 			}
 
-			var last = history[array_size - 1];
+			var last = history[history_size - 1];
 
 			// Now draw those scales
 			if (high != null && low != null) {
@@ -174,8 +170,8 @@ class graphView extends WatchUi.View {
 				// Now plot the data
 				var prevValue; // Last known value we got so we know from where to start our line
 				var prevPos = 0;
-				var startPos = max_size - array_size;
-				for (index = 0; index < array_size; index++) { // We start at one so we can draw from a previous point
+				var startPos = max_size - history_size;
+				for (index = 0; index < history_size; index++) { // We start at one so we can draw from a previous point
 					var valuePos = (index + startPos) * width * widthAdj / max_size;
 					var value = history[index];
 					var yValue;

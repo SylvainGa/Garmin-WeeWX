@@ -1,0 +1,8 @@
+<layout id="ShowScreenLayout">
+    <label id="Line1Text" x="center" y="20%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="Line2Text" x="center" y="30%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="Line3Text" x="center" y="40%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="Line4Text" x="center" y="50%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="Line5Text" x="center" y="60%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="Line6Text" x="center" y="70%" font="Graphics.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+</layout>

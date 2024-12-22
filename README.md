@@ -29,6 +29,10 @@ One caveat, this app starts with a menu, which is not supported and because of t
 
 What's new: 
 
+V0.97.1 
+Compiled with CIQ 7.4.3
+Added Edges devices
+
 V0.97.0
 Compiled with CIQ 7.3.0
 Added Enduro 3 and Fenix 8 watches, including the Fenix E
