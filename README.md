@@ -25,7 +25,30 @@ N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW
 
 You can flip up/down to view more data if it doesn't fit on screen
 
-One caveat, this app starts with a menu, which is not supported and because of that, when you get out, you'll need an extra Back button or sweep to get out of the blank screen. Couldn't figure out a way to get out of that problem,
+Caveat 1, this app starts with a menu, which is not supported and because of that, when you get out, you'll need an extra Back button or sweep to get out of the blank screen. Couldn't figure out a way to get out of that problem,
+
+Caveat 2, it's designed to be used with the Seasons skin and you need to make some modification to your installation
+First, create this file: /etc/weewx/skins/Seasons/daily.json.tmpl
+And add to it this content:
+#encoding UTF-8
+{"title":"Current Values","location":"$station.location","time":"$current.dateTime","lat":"$station.latitude[0]° $station.latitude[1]' $station.latitude[2]","lon":"$station.longitude[0]° $station.longitude[1]' $station.longitude[2]","alt":"$station.altitude","hardware":"$station.hardware","uptime":"$station.uptime","serverUptime":"$station.os_uptime","weewxVersion":"$station.version","current": {"outTemp":"$current.outTemp.formatted","windchill":"$current.windchill.formatted","heatIndex":"$current.heatindex.formatted","dewpoint":"$current.dewpoint.formatted","humidity":"$current.outHumidity.formatted","insideHumidity":"$current.inHumidity.formatted","barometer":"$current.barometer.formatted","barometerTrendDelta":"$trend.time_delta.hour.format("%.0f")","barometerTrendData":"$trend.barometer.formatted","windSpeed":"$current.windSpeed.formatted","windDir":"$current.windDir.formatted","windDirText":"$current.windDir.ordinal_compass","windGust":"$current.windGust.formatted","windGustDir":"$current.windGustDir.formatted","rainRate":"$current.rainRate.formatted","insideTemp":"$current.inTemp.formatted"}}
+
+Now edit this file: /etc/weewx/skins/Seasons/skin.conf
+Right after the following block
+[CheetahGenerator]
+    ....
+    [[ToDate]]
+        ....
+        [[[RSS]]]
+            template = rss.xml.tmpl
+
+Add:
+[[[json]]]
+    template = daily.json.tmpl
+
+That's it. Now either wait for the next iteration of the reports or force one with wee_reports. You can then access the data with http://IP-ADDRESS/weewx/daily.json
+
+Caveat 3: You'll probably need to access your weather station from outside your wifi network, so you'll need to open up the port on your router and get a dynamic DNS provider unless you have a static IP address. I would recommend for security reason that you 'hide' your WeeWX from the internet throught a reverse proxy system. This is something out of the scope of this readme so you'll need to figure out by yourself how to do that, although there are many tutorials available on the Internet on how to set one up. I personnaly use Apache2, LetsEncrypt and DuckDNS.org to secure my installation and have a dns entry for my weewx system.
 
 What's new: 
 
