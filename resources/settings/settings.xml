@@ -7,6 +7,22 @@
         <settingConfig type="boolean" required="true"/>
     </setting>
 
+    <setting propertyKey="@Properties.scrollSpeedAdjust" title="@Strings.scrollSpeedAdjust">
+        <settingConfig type="list">
+            <listEntry value="1">0.1</listEntry>
+            <listEntry value="2">0.2</listEntry>
+            <listEntry value="4">0.4</listEntry>
+            <listEntry value="6">0.6</listEntry>
+            <listEntry value="8">0.8</listEntry>
+            <listEntry value="10">1.0</listEntry>
+            <listEntry value="12">1.2</listEntry>
+            <listEntry value="14">1.4</listEntry>
+            <listEntry value="16">1.6</listEntry>
+            <listEntry value="18">1.8</listEntry>
+            <listEntry value="20">2.0</listEntry>
+        </settingConfig>
+    </setting>
+
     <setting propertyKey="@Properties.smallfontsize" title="@Strings.smallfontsize">
         <settingConfig type="boolean" required="true"/>
     </setting>

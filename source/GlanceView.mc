@@ -27,6 +27,7 @@ class GlanceView extends Ui.GlanceView {
     var _settingsChanged;
     var _scroll;
     var _hideTitle;
+    var _scrollSpeedAdjust;
 
     function initialize() {
         GlanceView.initialize();
@@ -40,6 +41,7 @@ class GlanceView extends Ui.GlanceView {
         _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
         _scroll = Properties.getValue("scrollclearsedge");
         _hideTitle = Properties.getValue("noGlanceTitle");
+        _scrollSpeedAdjust = Properties.getValue("scrollSpeedAdjust");
     }
 
 	function onShow() {
@@ -69,7 +71,7 @@ class GlanceView extends Ui.GlanceView {
             _dcWidth = (Math.cos(rad) * _dcWidth.toFloat()).toNumber();
         }
         //_steps = ((System.getDeviceSettings().screenWidth - 200).toFloat() / 50.0 + 0.5).toNumber();
-        _steps = ((System.getDeviceSettings().screenWidth).toFloat() / 100.0 + 0.5).toNumber();
+        _steps = (((System.getDeviceSettings().screenWidth).toFloat() / 100.0 + 0.5).toNumber() * _scrollSpeedAdjust) / 10;
         if (_steps < 1) {
             _steps = 1;
         }
@@ -103,6 +105,18 @@ class GlanceView extends Ui.GlanceView {
         if (_settingsChanged) {
             onLayout(dc);
         }
+
+        var fgColor = Gfx.COLOR_WHITE;
+        var bgColor = Gfx.COLOR_TRANSPARENT;
+
+        // Clear the screen with a black background so devices like my Edge 840 (usually a white background during daytime) can actually show something
+        if (App.getApp().getTheme() == THEME_LIGHT) {
+            fgColor = Gfx.COLOR_BLACK;
+            bgColor = Gfx.COLOR_TRANSPARENT;
+        }
+
+        dc.setColor(fgColor, bgColor);
+        dc.clear();
 
         var message = Storage.getValue("message");
         var text = Storage.getValue("text");
@@ -230,8 +244,6 @@ class GlanceView extends Ui.GlanceView {
         }
 
         // Draw the two rows of text on the glance widget
-        dc.setColor(Gfx.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-
         var spacing;
         if (line3.equals("") == false && _threeLines == true) {
             spacing = ((_dcHeight - _fontHeight * 3) / 4).toNumber();

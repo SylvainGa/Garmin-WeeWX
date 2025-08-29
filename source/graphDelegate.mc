@@ -22,4 +22,11 @@ class graphDelegate extends Ui.BehaviorDelegate {
 		Ui.popView(Ui.SLIDE_IMMEDIATE);
         return true;
     }
+
+    function onSelect() {
+		var thisView = new imageView();
+		var thisDelegate = new imageDelegate(thisView);
+		WatchUi.pushView(thisView, thisDelegate, WatchUi.SLIDE_IMMEDIATE);
+        return true;
+    }
 }

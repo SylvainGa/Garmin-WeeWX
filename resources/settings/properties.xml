@@ -2,6 +2,7 @@
 	<property id="AppVersion" type="string"></property>
 	<property id="noGlanceTitle" type="boolean">false</property>
 	<property id="smallfontsize" type="boolean">false</property>
+	<property id="scrollSpeedAdjust" type="number">10</property>
 	<property id="scrollclearsedge" type="boolean">true</property>
 	<property id="historySize" type="number">288</property>
 	<property id="sampleInterval" type="number">1</property>

@@ -1,6 +1,6 @@
 <strings>
     <string id="AppName">WeeWX</string>
-    <string id="AppNameVersion">WeeWX V0.97.1b3</string>
+    <string id="AppNameVersion">WeeWX V0.98.0b2</string>
 
 	<!--  GLANCE and MANIN view -->
     <string id="Awaiting_response" scope="background">Awaiting response</string>
@@ -17,6 +17,7 @@
 	<!--  In Settings only -->
 	<string id="noGlanceTitle">Don't show the title in Glance view</string>
 	<string id="smallfontsize">Use a smaller font in Glance</string>
+	<string id="scrollSpeedAdjust">Glance scroll speed adjust</string>
 	<string id="historySize">Graph datapoints size</string>
 	<string id="sampleInterval">Graph data intervals</string>
 	<string id="historySize_prompt">288 is 24h at 5 minutes interval</string>

@@ -11,16 +11,29 @@ const MAX_SIZE = 18;
 
 var gSettingsChanged;
 
+enum Theme {
+    THEME_LIGHT,
+    THEME_DARK
+}
+
 (:background)
 class WeeWXApp extends Application.AppBase {
 	var mView;
 	var mGlance;
 	var mServiceDelegate;
+	private var mTheme as Theme; // Device theme
 
     //! Constructor
     public function initialize() {
 		//DEBUG*/ logMessage("initialize called");
         AppBase.initialize();
+
+        // Test for night mode
+        if (System.DeviceSettings has :isNightModeEnabled) {
+            mTheme = System.getDeviceSettings().isNightModeEnabled ? THEME_DARK : THEME_LIGHT;
+        } else {
+            mTheme = THEME_DARK;
+        }
     }
 
 	public function onSettingsChanged() {
@@ -50,28 +63,6 @@ class WeeWXApp extends Application.AppBase {
     public function onStop(state as Dictionary?) as Void {
     }
 
-    //! Return the initial views for the app
-    public function getInitialView() as Array<Views or BehaviorDelegate>? {
-		//DEBUG*/ logMessage("getInitialView called");
-    	var mView = new $.WeeWXView(); 
-        return [mView];
-    }
-
-    function getServiceDelegate(){
-		//DEBUG*/ logMessage("getServiceDelegate called");
-//		Storage.setValue("message", "Waiting for data");
-        return [ new MyServiceDelegate() ];
-    }
-
-    (:glance)
-    function getGlanceView() {
-		//DEBUG*/ logMessage("getGlanceView called");
-
-        Background.registerForTemporalEvent(new Time.Duration(60*5));
-		mGlance = new GlanceView(); 
-        return [ mGlance ];
-    }
-
     function onBackgroundData(data) {
 		//DEBUG*/ logMessage("onBackgroundData received '" + data + "'");
         if (data != null && data instanceof Dictionary) {
@@ -93,6 +84,46 @@ class WeeWXApp extends Application.AppBase {
         WatchUi.requestUpdate();
 	}
 }
+
+    //! Return the initial views for the app
+    public function getInitialView() as Array<Views or BehaviorDelegate>? {
+		//DEBUG*/ logMessage("getInitialView called");
+    	var mView = new $.WeeWXView(); 
+        return [mView];
+    }
+
+    // Application handler for changes in day/night mode
+    public function onNightModeChanged() {
+        // Handle a change in night mode
+        if (System.DeviceSettings has :isNightModeEnabled) {
+            mTheme = System.getDeviceSettings().isNightModeEnabled ? THEME_DARK : THEME_LIGHT;
+        } else {
+            mTheme = THEME_LIGHT;
+        }
+        // Force a screen update.
+		//DEBUG*/ logMessage("onNightModeChanged requestUpdate");
+        WatchUi.requestUpdate();
+    }
+
+    function getServiceDelegate(){
+		//DEBUG*/ logMessage("getServiceDelegate called");
+//		Storage.setValue("message", "Waiting for data");
+        return [ new MyServiceDelegate() ];
+    }
+
+    (:glance)
+    function getGlanceView() {
+		//DEBUG*/ logMessage("getGlanceView called");
+
+        Background.registerForTemporalEvent(new Time.Duration(60*5));
+		mGlance = new GlanceView(); 
+        return [ mGlance ];
+    }
+
+    // Theme accessor
+    public function getTheme() as Theme {
+        return mTheme;
+    }
 
 (:background)
 function to_array(string, splitter, max_size) {
