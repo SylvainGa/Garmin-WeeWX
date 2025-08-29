@@ -52,6 +52,8 @@ Caveat 3: You'll probably need to access your weather station from outside your 
 
 What's new: 
 
+V0.98.0
+
 V0.97.1 
 Compiled with CIQ 7.4.3
 Added Edges devices

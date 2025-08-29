@@ -4,9 +4,7 @@
     <iq:application entry="WeeWXApp" id="9cf46f4c-1d4c-40c7-af93-13c2826fd971" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.0.0" name="@Strings.AppName" type="widget">
         <iq:products>
             <iq:product id="edge840"/>
-            <iq:product id="fenix6pro"/>
             <iq:product id="fenix7spro"/>
-            <iq:product id="vivoactive4s"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Background"/>

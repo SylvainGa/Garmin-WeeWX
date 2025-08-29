@@ -16,7 +16,7 @@ enum Theme {
     THEME_DARK
 }
 
-(:background)
+(:background, :glance)
 class WeeWXApp extends Application.AppBase {
 	var mView;
 	var mGlance;
@@ -83,14 +83,7 @@ class WeeWXApp extends Application.AppBase {
 		//DEBUG*/ logMessage("onBackgroundData requesting view update");
         WatchUi.requestUpdate();
 	}
-}
 
-    //! Return the initial views for the app
-    public function getInitialView() as Array<Views or BehaviorDelegate>? {
-		//DEBUG*/ logMessage("getInitialView called");
-    	var mView = new $.WeeWXView(); 
-        return [mView];
-    }
 
     // Application handler for changes in day/night mode
     public function onNightModeChanged() {
@@ -98,11 +91,18 @@ class WeeWXApp extends Application.AppBase {
         if (System.DeviceSettings has :isNightModeEnabled) {
             mTheme = System.getDeviceSettings().isNightModeEnabled ? THEME_DARK : THEME_LIGHT;
         } else {
-            mTheme = THEME_LIGHT;
+            mTheme = THEME_DARK;
         }
         // Force a screen update.
 		//DEBUG*/ logMessage("onNightModeChanged requestUpdate");
         WatchUi.requestUpdate();
+    }
+
+    //! Return the initial views for the app
+    public function getInitialView() as Array<Views or BehaviorDelegate>? {
+		//DEBUG*/ logMessage("getInitialView called");
+    	var mView = new $.WeeWXView(); 
+        return [mView];
     }
 
     function getServiceDelegate(){
@@ -124,6 +124,7 @@ class WeeWXApp extends Application.AppBase {
     public function getTheme() as Theme {
         return mTheme;
     }
+}
 
 (:background)
 function to_array(string, splitter, max_size) {
@@ -148,7 +149,6 @@ function to_array(string, splitter, max_size) {
 	}
 	return result;
 }
-
 
 (:debug, :background)
 function logMessage(message) {
