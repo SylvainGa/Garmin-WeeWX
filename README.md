@@ -53,35 +53,39 @@ Caveat 3: You'll probably need to access your weather station from outside your 
 What's new: 
 
 V0.98.0
+Image view (in progress).
+Configurable Glance scroll speed.
+Day/Night text color for Glance on Edges devices.
+Devices that support Glances don't need to hit Quit to leave.
 
 V0.97.1 
-Compiled with CIQ 7.4.3
-Added Edges devices
+Compiled with CIQ 7.4.3.
+Added Edges devices.
 
 V0.97.0
 Compiled with CIQ 7.3.0
-Added Enduro 3 and Fenix 8 watches, including the Fenix E
+Added Enduro 3 and Fenix 8 watches, including the Fenix E.
 Added a graphic for the outside temperature. Accessed by sliding to the left or pressing the Select button. The interval (by increment of 5 minutes) and the number of data points can be adjusted through the App Settings (max of 2016 or 7 days at interval of 5 minutes). By default, shows the last 24 hours (288 data points) but it must first accunulate those datapoints. A skip in the data is because the background ran but it couldn't get any data. It will NOT account for the time the watch is turned OFF.
 
 V0.96.3
-Workaround for a bug that Garmin never fixed
+Workaround for a bug that Garmin never fixed.
 
 V0.96.2
-Optimized Glance code and made the scroll speed more consistent across watches screen resolution
-New option to scroll further so the top/bottom edge are cleared
+Optimized Glance code and made the scroll speed more consistent across watches screen resolution.
+New option to scroll further so the top/bottom edge are cleared.
 
 V0.96.1
-New algorithm for Glance text vertical placement
-Option in Settings to choose a smaller font for Glance text. Could allow a third line of text on some watch
-Added a bunch of watches as supported
+New algorithm for Glance text vertical placement.
+Option in Settings to choose a smaller font for Glance text. Could allow a third line of text on some watch.
+Added a bunch of watches as supported.
 
 V0.96.0
-Adds scrolling text in Glance view if it's too long to fit the display area
+Adds scrolling text in Glance view if it's too long to fit the display area.
 
-V0.95.1 Oops, forgot scope=background for the french language
+V0.95.1 Oops, forgot scope=background for the french language.
 
 V0.95
-Adds support for glance view and Forerunner *65 watches
+Adds support for glance view and Forerunner *65 watches.
 
 V0.94
-Now using '|' as field separator (new line)
+Now using '|' as field separator (new line).

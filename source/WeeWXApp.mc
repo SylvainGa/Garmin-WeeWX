@@ -10,6 +10,7 @@ using Toybox.Application.Properties;
 const MAX_SIZE = 18;
 
 var gSettingsChanged;
+var gBack;
 
 enum Theme {
     THEME_LIGHT,
@@ -27,6 +28,8 @@ class WeeWXApp extends Application.AppBase {
     public function initialize() {
 		//DEBUG*/ logMessage("initialize called");
         AppBase.initialize();
+
+		gBack = false;
 
         // Test for night mode
         if (System.DeviceSettings has :isNightModeEnabled) {
@@ -101,23 +104,25 @@ class WeeWXApp extends Application.AppBase {
     //! Return the initial views for the app
     public function getInitialView() as Array<Views or BehaviorDelegate>? {
 		//DEBUG*/ logMessage("getInitialView called");
-    	var mView = new $.WeeWXView(); 
-        return [mView];
-    }
-
-    function getServiceDelegate(){
-		//DEBUG*/ logMessage("getServiceDelegate called");
-//		Storage.setValue("message", "Waiting for data");
-        return [ new MyServiceDelegate() ];
+		var mView = new $.WeeWXView(); 
+		return [mView];
     }
 
     (:glance)
     function getGlanceView() {
 		//DEBUG*/ logMessage("getGlanceView called");
 
+        Storage.setValue("fromGlance", true);
+
         Background.registerForTemporalEvent(new Time.Duration(60*5));
 		mGlance = new GlanceView(); 
         return [ mGlance ];
+    }
+
+    function getServiceDelegate(){
+		//DEBUG*/ logMessage("getServiceDelegate called");
+//		Storage.setValue("message", "Waiting for data");
+        return [ new MyServiceDelegate() ];
     }
 
     // Theme accessor

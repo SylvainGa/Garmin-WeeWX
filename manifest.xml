@@ -5,6 +5,7 @@
         <iq:products>
             <iq:product id="edge840"/>
             <iq:product id="fenix7spro"/>
+            <iq:product id="vivoactive4s"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Background"/>

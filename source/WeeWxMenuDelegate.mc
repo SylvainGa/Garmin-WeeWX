@@ -16,6 +16,21 @@ class WeeWXMenuDelegate extends WatchUi.Menu2InputDelegate {
 
 	function onSettingsChanged() {
 	}
+
+(:can_glance)
+	function onBack()
+	{
+		gBack = true;
+
+		try {
+			WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); 
+		}
+		catch (e) {
+			System.exit();
+		}
+
+		return true;
+	}
 	
     //! Handle a menu item being selected
     //! @param item Symbol identifier of the menu item that was chosen

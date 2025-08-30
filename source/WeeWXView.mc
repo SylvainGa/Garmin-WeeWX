@@ -55,6 +55,28 @@ class WeeWXView extends WatchUi.View {
 		//DEBUG*/ logMessage("onLayout:Showing main layout");
     }
 
+(:can_glance)
+	function onUpdate(dc) {
+		if (gBack) {
+			try {
+				WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); 
+			}
+			catch (e) {
+				System.exit();
+			}
+		}
+		
+		var width = dc.getWidth();
+		var height = dc.getHeight();
+
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+		dc.clear();
+		dc.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(width / 2, height / 2, Gfx.FONT_SMALL, WatchUi.loadResource(Rez.Strings.back), Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+	}
+
+
+(:cant_glance)
 	function onUpdate(dc) {
 		var width = dc.getWidth();
 		var height = dc.getHeight();
