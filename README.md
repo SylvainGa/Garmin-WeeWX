@@ -57,6 +57,7 @@ Image view (in progress).
 Configurable Glance scroll speed.
 Day/Night text color for Glance on Edges devices.
 Devices that support Glances don't need to hit Quit to leave.
+Font size in glance depends on the mumber of lines to show.
 
 V0.97.1 
 Compiled with CIQ 7.4.3.

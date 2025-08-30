@@ -38,7 +38,6 @@ class GlanceView extends Ui.GlanceView {
 
     function onSettingsChanged() {
         _settingsChanged = true;
-        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY);
         _scroll = Properties.getValue("scrollclearsedge");
         _hideTitle = Properties.getValue("noGlanceTitle");
         _scrollSpeedAdjust = Properties.getValue("scrollSpeedAdjust");
@@ -53,8 +52,26 @@ class GlanceView extends Ui.GlanceView {
     function onLayout(dc) {
         _settingsChanged = false;
 
-        _fontHeight = Graphics.getFontHeight(_usingFont);
+        var fonts = [Graphics.FONT_XTINY, Graphics.FONT_TINY, Graphics.FONT_SMALL, Graphics.FONT_MEDIUM, Graphics.FONT_LARGE];
+        _usingFont = (Properties.getValue("smallfontsize") ? Graphics.FONT_XTINY : Graphics.FONT_TINY); // We default to this
         _dcHeight = dc.getHeight();
+
+        // Find the best font that fits the number of lines we'll be showing (two or three, depending if we're showing the title)
+        for (var i = 0; i < fonts.size(); i++) {
+            _fontHeight = Graphics.getFontHeight(fonts[i]);
+            if (_hideTitle) {
+                if (_dcHeight / _fontHeight == 2) {
+                    _usingFont = fonts[i];
+                    break;
+                }
+            }
+            else {
+                if (_dcHeight / _fontHeight == 3) {
+                    _usingFont = fonts[i];
+                    break;
+                }
+            }
+        }
 
         if (_dcHeight / _fontHeight >= 3.0) {
             _threeLines = true;

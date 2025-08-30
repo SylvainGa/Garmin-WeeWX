@@ -1,6 +1,6 @@
 <strings>
     <string id="AppName">WeeWX</string>
-    <string id="AppNameVersion">WeeWX V0.98.0b4</string>
+    <string id="AppNameVersion">WeeWX V0.98.0.b5</string>
 
 	<!--  GLANCE and MANIN view -->
     <string id="Awaiting_response" scope="background">Awaiting response</string>
